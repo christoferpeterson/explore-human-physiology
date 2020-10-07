@@ -3,6 +3,7 @@ import {Container,Row,Col,Form,Button} from "react-bootstrap";
 import Physics from "./Physics";
 import CellPresets from "./CellPresets";
 import Chart from "./Chart";
+import { StopFill, PlayFill, ArrowCounterclockwise } from 'react-bootstrap-icons';
 
 const CUSTOM_INDEX = -1;
 const HISTORY_INTERVAL = 200;
@@ -19,20 +20,44 @@ class App extends React.Component {
       equilibriumPotential: -61.5,
       history: [],
       startTime: new Date(),
+      running:true
     }
-
-    for (let index = -HISTORY_LENGTH; index < 0; index++) {
-      this.state.history.push({x: index, y: this.state.equilibriumPotential})
-    }
+    this.state.history = this.buildHistory(this.state);
   }
 
   componentDidMount = () => {
+    this.startHistory();
+  }
+
+  startHistory = () => {
     this.updateHistoryInterval = setInterval(this.updateHistory, HISTORY_INTERVAL);
+    if(!this.state.running) {
+      this.setState({...this.state,running:true});
+    }
+  }
+
+  stopHistory = () => {
+    clearInterval(this.updateHistoryInterval);
+    if(!!this.state.running) {
+      this.setState({...this.state,running:false});
+    }
+  }
+
+  buildHistory = (state) => {
+    const output = [];
+    for (let index = -HISTORY_LENGTH; index <= 0; index++) {
+      output.push({x: index, y: state.equilibriumPotential})
+    }
+    return output;
+  }
+
+  resetHistory = () => {
+    this.setState({...this.state, history: this.buildHistory(this.state)});
   }
 
   updateHistory = () => {
     const newHistory = [...this.state.history];
-    const currentTime = Math.round((new Date() - this.state.startTime) / 1000);
+    const currentTime = newHistory[newHistory.length - 1].x + 1;
     newHistory.push({x: currentTime, y: this.state.equilibriumPotential});
 
     if(newHistory.length > HISTORY_LENGTH) {
@@ -53,13 +78,19 @@ class App extends React.Component {
   updatePreset = (event) => {
     const presetIndex = event.target.value;
     const preset = CellPresets[presetIndex];
-    console.log(event,preset, presetIndex, CellPresets);
-    const newState = {
-      preset: presetIndex,
-      ionConcentrationOutside: preset.KConcentrationOut,
-      ionConcentrationInside: preset.KConcentrationIn,
-      temperature: preset.T
-    };
+    let newState = {
+      preset: presetIndex
+    }
+
+    if(!!preset) {
+      newState = {
+        ...newState,
+        ionConcentrationOutside: preset.KConcentrationOut,
+        ionConcentrationInside: preset.KConcentrationIn,
+        temperature: preset.T
+      }
+    }
+    
     this.update(newState, true);
   }
 
@@ -87,11 +118,28 @@ class App extends React.Component {
     )
   }
 
+  renderChart = () => {
+    const {history} = this.state;
+    const chartOptions = {
+      axisX: {
+        title: "time (ms)"
+      },
+      axisY: {
+        title: "membrane potential (mV)",
+        minimum: -120,
+        maximum: 120,
+        interval: 20
+      }
+    }
+
+    return(<Chart chartTitle={"Equilibrium Potential"} data={history} options={chartOptions} />)
+  }
+
   render = () => {
     const {
       equilibriumPotential,
       preset,
-      history
+      running
     } = this.state;
 
     return (
@@ -119,7 +167,10 @@ class App extends React.Component {
         </Row>
         <Row>
           <Col>
-            <Chart chartTitle={"Equilibrium Potential"} data={history} />
+            {this.renderChart()}
+            {!!running && <Button variant="danger" onClick={this.stopHistory}><StopFill /> Stop</Button>}
+            {!running && <Button variant="success" onClick={this.startHistory}><PlayFill /> Play</Button>}
+            <Button variant="dark" onClick={this.resetHistory}><ArrowCounterclockwise /> Reset</Button>
           </Col>
         </Row>
       </Container>

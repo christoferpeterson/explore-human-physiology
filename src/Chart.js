@@ -10,22 +10,24 @@ class Chart extends React.Component {
   }
 
   render = () => {
-    const { chartTitle, data } = this.props;
+    const { chartTitle, data, options } = this.props;
 
-    const options = {
+    const chartOptions = {
+      ...options,
       title:{
         text: chartTitle
       },
       data: [
       {
         type: "line",
+        markerSize: 0,
         dataPoints: data
       }]
     };
 		
    return (
       <div>
-        <CanvasJSChart options = {options}
+        <CanvasJSChart options={chartOptions}
             /* onRef = {ref => this.chart = ref} */
         />
       </div>
