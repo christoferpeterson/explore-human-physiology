@@ -16,4 +16,27 @@ const calculateNernst = (props) => {
 	return -R * CtoK(T) / z / F * (Math.log(ionI / ionO)) * 1000;
 }
 
-export default { R, F, CtoK, calculateNernst };
+const calculateGoldman = (props) => {
+	const {
+		temperature: T,
+		sodium: {
+			permeability: permNa,
+			concentrationOut: cOutNa,
+			concentrationIn: cInNa
+		},
+		chloride: {
+			permeability: permCl,
+			concentrationOut: cOutCl,
+			concentrationIn: cInCl
+		},
+		potassium: {
+			permeability: permK,
+			concentrationOut: cOutK,
+			concentrationIn: cInK
+		}
+	} = props;
+
+	return -R * CtoK(T) / F * Math.log((permK * cInK + permNa * cInNa + permCl * cOutCl) / (permK * cOutK + permNa * cOutNa + permCl * cInCl)) * 1000;
+}
+
+export default { R, F, CtoK, calculateNernst, calculateGoldman };

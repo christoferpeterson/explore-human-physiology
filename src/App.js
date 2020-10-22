@@ -7,6 +7,7 @@ import {
 import {Container,Row,Col,Nav,Navbar,NavDropdown} from "react-bootstrap";
 	
 import EquilibriumPotentialPage from './Potentials/EquilibriumPotentialPage';
+import RestingMembranePotentialPage from './Potentials/RestingMembranePotentialPage';
 
 function App() {
 	const path = useLocation();
@@ -40,6 +41,9 @@ function App() {
 				<Switch>
 					<Route path="/equilibrium-potential">
 						<EquilibriumPotentialPage />
+					</Route>
+					<Route path="/resting-membrane-potential">
+						<RestingMembranePotentialPage />
 					</Route>
 				</Switch>
 			</Container>

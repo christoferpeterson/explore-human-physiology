@@ -13,20 +13,20 @@ const CUSTOM_INDEX = -1;
 const HISTORY_INTERVAL = 200;
 const HISTORY_LENGTH = 60;
 
-class EquilibriumPotentialPage extends React.Component {
+class RestingMembranePotentialPage extends React.Component {
 	constructor() {
 		super();
+		const cellDefault = CellPresets[0];
 		this.state = {
 			preset: 0,
-			ionConcentrationOutside: 10,
-			ionConcentrationInside: 100,
-			temperature: 37,
-			equilibriumPotential: -61.5,
+			temperature: cellDefault.T,
+			restingMembranePotential: -59.2,
+			sodium: { ...cellDefault.sodium },
+			potassium: { ...cellDefault.potassium },
+			chloride: { ...cellDefault.chloride },
 			history: [],
 			startTime: new Date(),
-			running:true,
-			ion: Ions[0],
-			ionIndex: 0
+			running:true
 		}
 		this.state.history = this.buildHistory(this.state);
 	}
@@ -52,7 +52,7 @@ class EquilibriumPotentialPage extends React.Component {
 	buildHistory = (state) => {
 		const output = [];
 		for (let index = -HISTORY_LENGTH; index <= 0; index++) {
-			output.push({x: index, y: state.equilibriumPotential})
+			output.push({x: index, y: state.restingMembranePotential})
 		}
 		return output;
 	}
@@ -64,7 +64,7 @@ class EquilibriumPotentialPage extends React.Component {
 	updateHistory = () => {
 		const newHistory = [...this.state.history];
 		const currentTime = newHistory[newHistory.length - 1].x + 1;
-		newHistory.push({x: currentTime, y: this.state.equilibriumPotential});
+		newHistory.push({x: currentTime, y: this.state.restingMembranePotential});
 
 		if(newHistory.length > HISTORY_LENGTH) {
 			newHistory.shift();
@@ -73,27 +73,28 @@ class EquilibriumPotentialPage extends React.Component {
 		this.update({history: newHistory});
 	}
 
-	update = (newState, updateEquilibriumPotential) => {
+	update = (newState, updateRMP) => {
 		const updatedState = {...this.state, ...newState};
-		if(!!updateEquilibriumPotential) {
-			updatedState.equilibriumPotential = Physics.calculateNernst(updatedState)
+		if(!!updateRMP) {
+			updatedState.restingMembranePotential = Physics.calculateGoldman(updatedState)
 		}
-
 		this.setState(updatedState);
 	}
 
 	updatePreset = (event) => {
 		const presetIndex = event.target.value;
 		const preset = CellPresets[presetIndex];
+
 		let newState = {
 			preset: presetIndex
 		}
-		
+
 		if(!!preset) {
 			newState = {
 				...newState,
-				ionConcentrationOutside: preset[this.state.ion.propertyName].concentrationOut,
-				ionConcentrationInside: preset[this.state.ion.propertyName].concentrationIn,
+				potassium: { ...preset.potassium },
+				sodium: { ...preset.sodium },
+				chloride: { ...preset.chloride },
 				temperature: preset.T
 			}
 		}
@@ -101,15 +102,9 @@ class EquilibriumPotentialPage extends React.Component {
 		this.update(newState, true);
 	}
 
-	updateIon = (event) => {
-		const newState = {ionIndex: event.target.value};
-		newState.ion = Ions[newState.ionIndex];
-		newState.z = newState.ion.z;
-		this.update({...this.state, ...newState}, true);
-	}
-
 	rangeInput = (props) => {
 		const {
+			propertyName,
 			variableName,
 			min,
 			max,
@@ -117,7 +112,7 @@ class EquilibriumPotentialPage extends React.Component {
 			logSlider
 		} = props;
 
-		const value = this.state[variableName];
+		const value = !!propertyName ? this.state[propertyName][variableName] : this.state[variableName];
 
 		const calculateValue = (v) => Math.max(Math.min(v, max), min);
 		const calculateLogValue = (v) => Math.max(Math.min(Math.round(Math.pow(10,v)), max), min);
@@ -125,25 +120,49 @@ class EquilibriumPotentialPage extends React.Component {
 
 		const onInputChange = (event) => {
 			const newState = {preset: CUSTOM_INDEX};
-			newState[variableName] = calculateValue(event.target.valueAsNumber);
+			const newValue = calculateValue(event.target.valueAsNumber);
+			if(!!propertyName) {
+				newState[propertyName] = this.state[propertyName];
+				newState[propertyName][variableName] = newValue
+			}
+			else
+				newState[variableName] = newValue;
 			this.update(newState, true);
 		};
 
 		const onSliderChange = (event) => {
 			const newState = {preset: CUSTOM_INDEX};
-			newState[variableName] = (logSlider ? calculateLogValue : calculateValue)(event.target.valueAsNumber);
+			const newValue = (logSlider ? calculateLogValue : calculateValue)(event.target.valueAsNumber);
+			if(!!propertyName) {
+				newState[propertyName] = this.state[propertyName];
+				newState[propertyName][variableName] = newValue
+			}
+			else
+				newState[variableName] = newValue;
 			this.update(newState, true);
 		}
 
 		const decrement = () => {
 			const newState = {preset: CUSTOM_INDEX};
-			newState[variableName] = calculateValue(value-1);
+			const newValue = calculateValue(value-1);
+			if(!!propertyName) {
+				newState[propertyName] = this.state[propertyName];
+				newState[propertyName][variableName] = newValue
+			}
+			else
+				newState[variableName] = newValue;
 			this.update(newState, true);
 		}
 
 		const increment = () => {
 			const newState = {preset: CUSTOM_INDEX};
-			newState[variableName] = calculateValue(value+1);
+			const newValue = calculateValue(value+1);
+			if(!!propertyName) {
+				newState[propertyName] = this.state[propertyName];
+				newState[propertyName][variableName] = newValue
+			}
+			else
+				newState[variableName] = newValue;
 			this.update(newState, true);
 		}
 
@@ -179,58 +198,39 @@ class EquilibriumPotentialPage extends React.Component {
 				title: "time (ms)"
 			},
 			axisY: {
-				title: "equilibrium potential (mV)",
+				title: "resting membrane potential (mV)",
 				minimum: -120,
 				maximum: 120,
 				interval: 20
 			}
 		}
 
-		return(<Chart chartTitle={"Equilibrium Potential vs. Time"} data={history} options={chartOptions} />)
+		return(<Chart chartTitle={"Resting Membrane Potential vs. Time"} data={history} options={chartOptions} />)
 	}
 
 	renderDescription = () => {
-		const nernstLatex = "E_{0}=\\cfrac{-RT}{zF}\\ln \\cfrac{[ion]_{i}}{[ion]_{o}}";
+		const nernstLatex = "E_{m}=-\\frac{RT}{F}\\ln \\frac{P_{K^{+}}[K^{+}]_{i}+P_{Na^{+}}[Na^{+}]_{i}+P_{Cl^{-}}[Cl^{-}]_{o}}{P_{K^{+}}[K^{+}]_{o}+P_{Na^{+}}[Na^{+}]_{o}+P_{Cl^{-}}[Cl^{-}]_{i}}";
 		return (<div>
-			<h1>Equilibrium Potential</h1>
-			<p>
-				Diffusion is the natural tendency for particles in a solution to evenly distribute among the solvent. The particles, through
-				their intrinsic movement, will flow from areas of high concentration to areas of low concentration following the third law
-				of thermodynamics. The entropy of the system will increase as the particles spread out. This causes a net flux of particles down
-				the solute concentration gradient.
-			</p>
-			<p>
-				In vivo, the solutes are a combination of many ions and solutions are be separated by plasma membrane. Each ion will attempt to 
-				spread out according to their particular concentration gradients. Ions are charged and like charges repel eachother. An additional 
-				electrostatic force limits the net flux of ions. The direction of the electrical force, when considering a single ion, can support 
-				or oppose diffusion. When the flux due to the electrical repulsion is equal and opposite to flux due to diffusion, the net flux of 
-				ions will be zero. This equilibrium point can be measured as the electric potential. When the potential is measured on either side
-				of a plasma membrane, it is called the equilibrium potential. It is measured in millivolts.
-			</p>
-			<h2>Nernst Equation</h2>
-			<p>
-				Walther Nernst, a German physical chemist, described equilibrium potential as the mathematical relationship between the charges of
-				the ions, and the ratio of concentrations on either side of a membrane. The equation can be written as:
-			</p>
+			<h1>Resting Membrane Potential</h1>
 			<p className="text-center"><MathJax.Provider><MathJax.Node inline formula={nernstLatex} /></MathJax.Provider></p>
 			<dl>
-				<dt>E<sub>0</sub></dt><dd>The equilibrium potential across a plasma membrane measured in millivolts (mV).</dd>
+				<dt>E<sub>m</sub></dt><dd>The resting membrane potential measured in millivolts (mV).</dd>
 				<dt>R</dt><dd>The universal gas constant (8.31446 J K<sup>-1</sup> mol<sup>-1</sup>).</dd>
 				<dt>T</dt><dd>The temperature of the system measured in Kelvins (K).</dd>
-				<dt>z</dt><dd>The charge of the ion (typically 1 or -1 for biological systems).</dd>
+				<dt>P<sub>ion</sub></dt><dd>The permeability of the ion across the membrane in meters per second (m s<sup>-1</sup>)</dd>
 				<dt>[ion]<sub>o</sub></dt><dd>The concentration of the ion outside of the plasma membrane measured in milliMolar (mM).</dd>
 				<dt>[ion]<sub>i</sub></dt><dd>The concentration of the ion inside of the plasma membrane measured in milliMolar (mM).</dd>
 			</dl>
 			<p>
-				The form and graph on this page can be used to visualize how equilibrium potential changes in a dynamic system. Adjust the
-				values for the Nernst equation variables and see how the equilibrium potential changes on the graph. Press stop to freeze the graph
+				The form and graph on this page can be used to visualize how resting membrane potential changes. Adjust the
+				values for the Goldman equation variables and see how the resting membrane potential changes on the graph. Press stop to freeze the graph
 				in place, press play to begin recording data, again, and press reset to clear out the old data.
 			</p>
 			<hr />
 			<small>
 				<ol style={{paddingLeft:"1em"}}>
 					<li><a href="http://www.nernstgoldman.physiology.arizona.edu/" target="blank">The Nernst/Goldman Equation Simulator. (n.d.). Retrieved October 22, 2020, from http://www.nernstgoldman.physiology.arizona.edu/</a></li>
-					<li>Widmaier, E. P., Vander, A. J., Raff, H., &amp; Strang, K. T. (2019). 6.6 The Resting Membrane Potential. In <em>Vander's human physiology: The mechanisms of body function</em> (p. 145). New York, NY: McGraw-Hill Education.</li>
+					<li>Widmaier, E. P., Vander, A. J., Raff, H., &amp; Strang, K. T. (2019). 6.6 The Resting Membrane Potential. In <em>Vander's human physiology: The mechanisms of body function</em> (p. 144-148). New York, NY: McGraw-Hill Education.</li>
 					<li><a href="https://journals.physiology.org/doi/full/10.1152/advan.00029.2004" target="blank">Wright, S. H. (2004). Generation of resting membrane potential. <em>Advances in Physiology Education</em>, 28(4), 139-142. doi:10.1152/advan.00029.2004</a></li>
 				</ol>
 			</small>
@@ -239,9 +239,8 @@ class EquilibriumPotentialPage extends React.Component {
 
 	renderForm = () => {
 		const {
-			equilibriumPotential,
+			restingMembranePotential,
 			preset,
-			ion,
 			ionIndex
 		} = this.state;
 
@@ -257,21 +256,20 @@ class EquilibriumPotentialPage extends React.Component {
 							</Form.Control>
 						</Form.Group>
 					</Col>
-					<Col>
-						<Form.Group>
-							<Form.Label><strong>Ion</strong></Form.Label>
-							<Form.Control as="select" custom value={ionIndex} onChange={this.updateIon}>
-								{Ions.map((value,index) => (<option key={index} value={index}>{Ions[index].displayName}</option>))}
-							</Form.Control>
-						</Form.Group>
-					</Col>
 				</Row>
-				{this.rangeInput({label: `[${ion.shortNameHtml}]<sub>o<sub>`, variableName: "ionConcentrationOutside", min: 1, max: 600})}
-				{this.rangeInput({label: `[${ion.shortNameHtml}]<sub>i<sub>`, variableName: "ionConcentrationInside", min: 1, max: 200})}
-				{this.rangeInput({label: "T (°C)", variableName: "temperature", min: 0, max: 100})}
+				{Ions.map((ion,index) => {
+					return (
+						<div key={index}>
+							{this.rangeInput({label: `[${ion.shortNameHtml}]<sub>o</sub>`, propertyName: ion.propertyName, variableName: "concentrationOut", min: ion.concentrationOut.min, max: ion.concentrationOut.max})}
+							{this.rangeInput({label: `[${ion.shortNameHtml}]<sub>i</sub>`, propertyName: ion.propertyName, variableName: "concentrationIn", min: ion.concentrationIn.min, max: ion.concentrationIn.max})}
+							{this.rangeInput({label: `P<sub>${ion.shortNameHtml}</sub>`, logSlider: true, propertyName: ion.propertyName, variableName: "permeability", min: ion.permeability.min, max: ion.permeability.max})}
+						</div>
+					)
+				})}
+						{this.rangeInput({label: "T (°C)", variableName: "temperature", min: 0, max: 100})}
 				<Form.Group>
-					<Form.Label dangerouslySetInnerHTML={{__html: `<strong>E<sub>0</sub> of ${ion.shortNameHtml}</strong>`}}></Form.Label>
-					<Form.Control value={equilibriumPotential.toFixed(1)} type="number" disabled />
+					<Form.Label dangerouslySetInnerHTML={{__html: `<strong>E<sub>m</sub></strong>`}}></Form.Label>
+					<Form.Control value={restingMembranePotential.toFixed(1)} type="number" disabled />
 				</Form.Group>
 			</Form>
 		)
@@ -304,4 +302,4 @@ class EquilibriumPotentialPage extends React.Component {
 	}
 }
 
-export default EquilibriumPotentialPage;
+export default RestingMembranePotentialPage;
