@@ -1,17 +1,15 @@
 import React from "react";
-import {Row,Col,Form,Button,InputGroup} from "react-bootstrap";
+import {Row,Col,Form,Button} from "react-bootstrap";
 import Physics from "../Physics";
 import CellPresets from "../data/CellPresets";
 import Ions from "../data/Ions";
 import Chart from "../Chart";
 import { StopFill, PlayFill, ArrowCounterclockwise } from 'react-bootstrap-icons';
 import MathJax from "react-mathjax";
-import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
-import RangeSlider from 'react-bootstrap-range-slider';
+import RangeInput from '../Shared/RangeInput';
+import Constants from '../Shared/Constants';
 
-const CUSTOM_INDEX = -1;
-const HISTORY_INTERVAL = 200;
-const HISTORY_LENGTH = 60;
+const {CUSTOM_INDEX, HISTORY_INTERVAL, HISTORY_LENGTH } = Constants;
 
 class EquilibriumPotentialPage extends React.Component {
 	constructor() {
@@ -35,17 +33,26 @@ class EquilibriumPotentialPage extends React.Component {
 		this.startHistory();
 	}
 
+	update = (newState, updateEquilibriumPotential) => {
+		const updatedState = {...this.state, ...newState};
+		if(!!updateEquilibriumPotential) {
+			updatedState.equilibriumPotential = Physics.calculateNernst(updatedState)
+		}
+
+		this.setState(updatedState);
+	}
+
 	startHistory = () => {
 		this.updateHistoryInterval = setInterval(this.updateHistory, HISTORY_INTERVAL);
 		if(!this.state.running) {
-			this.setState({...this.state,running:true});
+			this.update({running:true});
 		}
 	}
 
 	stopHistory = () => {
 		clearInterval(this.updateHistoryInterval);
 		if(!!this.state.running) {
-			this.setState({...this.state,running:false});
+			this.update({running:false});
 		}
 	}
 
@@ -58,7 +65,7 @@ class EquilibriumPotentialPage extends React.Component {
 	}
 
 	resetHistory = () => {
-		this.setState({...this.state, history: this.buildHistory(this.state)});
+		this.update({history: this.buildHistory(this.state)});
 	}
 
 	updateHistory = () => {
@@ -71,15 +78,6 @@ class EquilibriumPotentialPage extends React.Component {
 		}
 
 		this.update({history: newHistory});
-	}
-
-	update = (newState, updateEquilibriumPotential) => {
-		const updatedState = {...this.state, ...newState};
-		if(!!updateEquilibriumPotential) {
-			updatedState.equilibriumPotential = Physics.calculateNernst(updatedState)
-		}
-
-		this.setState(updatedState);
 	}
 
 	updatePreset = (event) => {
@@ -106,70 +104,6 @@ class EquilibriumPotentialPage extends React.Component {
 		newState.ion = Ions[newState.ionIndex];
 		newState.z = newState.ion.z;
 		this.update({...this.state, ...newState}, true);
-	}
-
-	rangeInput = (props) => {
-		const {
-			variableName,
-			min,
-			max,
-			label,
-			logSlider
-		} = props;
-
-		const value = this.state[variableName];
-
-		const calculateValue = (v) => Math.max(Math.min(v, max), min);
-		const calculateLogValue = (v) => Math.max(Math.min(Math.round(Math.pow(10,v)), max), min);
-		const getSliderValue = (v) => logSlider ? Math.log10(v) : v;
-
-		const onInputChange = (event) => {
-			const newState = {preset: CUSTOM_INDEX};
-			newState[variableName] = calculateValue(event.target.valueAsNumber);
-			this.update(newState, true);
-		};
-
-		const onSliderChange = (event) => {
-			const newState = {preset: CUSTOM_INDEX};
-			newState[variableName] = (logSlider ? calculateLogValue : calculateValue)(event.target.valueAsNumber);
-			this.update(newState, true);
-		}
-
-		const decrement = () => {
-			const newState = {preset: CUSTOM_INDEX};
-			newState[variableName] = calculateValue(value-1);
-			this.update(newState, true);
-		}
-
-		const increment = () => {
-			const newState = {preset: CUSTOM_INDEX};
-			newState[variableName] = calculateValue(value+1);
-			this.update(newState, true);
-		}
-
-		return (
-			<Form.Group>
-				<Row>
-					<Col><strong><Form.Label dangerouslySetInnerHTML={{__html: label}} /></strong></Col>
-				</Row>
-				<Row>
-					<Col xs={12} sm={12} md={4}>
-						<InputGroup size="sm">
-								<InputGroup.Prepend>
-									<Button disabled={value == min} variant="dark" onClick={decrement}>-</Button>
-								</InputGroup.Prepend>
-								<Form.Control value={value} min={min} max={max} type="number" onChange={onInputChange} />
-								<InputGroup.Append>
-									<Button disabled={value == max} variant="dark" onClick={increment}>+</Button>
-								</InputGroup.Append>
-						</InputGroup>
-					</Col>
-					<Col xs={12} sm={12} md={8}>
-						<RangeSlider variant="dark" value={getSliderValue(value)} min={getSliderValue(min)} max={getSliderValue(max)} step={logSlider ? 0.01 : 1} onChange={onSliderChange} tooltip="off" />
-					</Col>
-				</Row>
-			</Form.Group>
-		)
 	}
 
 	renderChart = () => {
@@ -245,6 +179,8 @@ class EquilibriumPotentialPage extends React.Component {
 			ionIndex
 		} = this.state;
 
+		const sharedRangeInputProps = {state: this.state, update: this.update}
+
 		return (
 			<Form>
 				<Row>
@@ -266,9 +202,9 @@ class EquilibriumPotentialPage extends React.Component {
 						</Form.Group>
 					</Col>
 				</Row>
-				{this.rangeInput({label: `[${ion.shortNameHtml}]<sub>o<sub>`, variableName: "ionConcentrationOutside", min: 1, max: 600})}
-				{this.rangeInput({label: `[${ion.shortNameHtml}]<sub>i<sub>`, variableName: "ionConcentrationInside", min: 1, max: 200})}
-				{this.rangeInput({label: "T (°C)", variableName: "temperature", min: 0, max: 100})}
+				<RangeInput {...sharedRangeInputProps} style={ion.style} label={`[${ion.shortNameHtml}]<sub>o<sub>`} variableName="ionConcentrationOutside" min={1} max={600} />
+				<RangeInput {...sharedRangeInputProps} style={ion.style} label={`[${ion.shortNameHtml}]<sub>i<sub>`} variableName="ionConcentrationInside" min={1} max={200} />
+				<RangeInput {...sharedRangeInputProps} label={`T (°C)`} variableName="temperature" min={0} max={100} />
 				<Form.Group>
 					<Form.Label dangerouslySetInnerHTML={{__html: `<strong>E<sub>0</sub> of ${ion.shortNameHtml}</strong>`}}></Form.Label>
 					<Form.Control value={equilibriumPotential.toFixed(1)} type="number" disabled />

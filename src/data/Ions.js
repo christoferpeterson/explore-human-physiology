@@ -1,7 +1,8 @@
 export default [
 	{ 
 		displayName: "Potassium", 
-		propertyName: "potassium", 
+		propertyName: "potassium",
+		style: "primary", 
 		shortNameHtml: "K<sup>+</sup>",
 		z: 1,
 		concentrationOut: {
@@ -21,6 +22,7 @@ export default [
 	{ 
 		displayName: "Sodium",
 		propertyName: "sodium",
+		style: "danger",
 		shortNameHtml: "Na<sup>+</sup>",
 		z: 1,
 		concentrationOut: {
@@ -39,6 +41,7 @@ export default [
 	{ 
 		displayName: "Chloride",
 		propertyName: "chloride",
+		style: "success",
 		shortNameHtml: "Cl<sup>-</sup>",
 		z: -1,
 		concentrationOut: {

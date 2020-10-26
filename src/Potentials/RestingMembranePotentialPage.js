@@ -6,12 +6,8 @@ import Ions from "../data/Ions";
 import Chart from "../Chart";
 import { StopFill, PlayFill, ArrowCounterclockwise } from 'react-bootstrap-icons';
 import MathJax from "react-mathjax";
-import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
-import RangeSlider from 'react-bootstrap-range-slider';
-
-const CUSTOM_INDEX = -1;
-const HISTORY_INTERVAL = 200;
-const HISTORY_LENGTH = 60;
+import RangeInput from '../Shared/RangeInput';
+import Constants from '../Shared/Constants';
 
 class RestingMembranePotentialPage extends React.Component {
 	constructor() {
@@ -36,29 +32,29 @@ class RestingMembranePotentialPage extends React.Component {
 	}
 
 	startHistory = () => {
-		this.updateHistoryInterval = setInterval(this.updateHistory, HISTORY_INTERVAL);
+		this.updateHistoryInterval = setInterval(this.updateHistory, Constants.HISTORY_INTERVAL);
 		if(!this.state.running) {
-			this.setState({...this.state,running:true});
+			this.update({running:true});
 		}
 	}
 
 	stopHistory = () => {
 		clearInterval(this.updateHistoryInterval);
 		if(!!this.state.running) {
-			this.setState({...this.state,running:false});
+			this.update({running:false});
 		}
 	}
 
 	buildHistory = (state) => {
 		const output = [];
-		for (let index = -HISTORY_LENGTH; index <= 0; index++) {
+		for (let index = -Constants.HISTORY_LENGTH; index <= 0; index++) {
 			output.push({x: index, y: state.restingMembranePotential})
 		}
 		return output;
 	}
 
 	resetHistory = () => {
-		this.setState({...this.state, history: this.buildHistory(this.state)});
+		this.update({history: this.buildHistory(this.state)});
 	}
 
 	updateHistory = () => {
@@ -66,7 +62,7 @@ class RestingMembranePotentialPage extends React.Component {
 		const currentTime = newHistory[newHistory.length - 1].x + 1;
 		newHistory.push({x: currentTime, y: this.state.restingMembranePotential});
 
-		if(newHistory.length > HISTORY_LENGTH) {
+		if(newHistory.length > Constants.HISTORY_LENGTH) {
 			newHistory.shift();
 		}
 
@@ -102,95 +98,6 @@ class RestingMembranePotentialPage extends React.Component {
 		this.update(newState, true);
 	}
 
-	rangeInput = (props) => {
-		const {
-			propertyName,
-			variableName,
-			min,
-			max,
-			label,
-			logSlider
-		} = props;
-
-		const value = !!propertyName ? this.state[propertyName][variableName] : this.state[variableName];
-
-		const calculateValue = (v) => Math.max(Math.min(v, max), min);
-		const calculateLogValue = (v) => Math.max(Math.min(Math.round(Math.pow(10,v)), max), min);
-		const getSliderValue = (v) => logSlider ? Math.log10(v) : v;
-
-		const onInputChange = (event) => {
-			const newState = {preset: CUSTOM_INDEX};
-			const newValue = calculateValue(event.target.valueAsNumber);
-			if(!!propertyName) {
-				newState[propertyName] = this.state[propertyName];
-				newState[propertyName][variableName] = newValue
-			}
-			else
-				newState[variableName] = newValue;
-			this.update(newState, true);
-		};
-
-		const onSliderChange = (event) => {
-			const newState = {preset: CUSTOM_INDEX};
-			const newValue = (logSlider ? calculateLogValue : calculateValue)(event.target.valueAsNumber);
-			if(!!propertyName) {
-				newState[propertyName] = this.state[propertyName];
-				newState[propertyName][variableName] = newValue
-			}
-			else
-				newState[variableName] = newValue;
-			this.update(newState, true);
-		}
-
-		const decrement = () => {
-			const newState = {preset: CUSTOM_INDEX};
-			const newValue = calculateValue(value-1);
-			if(!!propertyName) {
-				newState[propertyName] = this.state[propertyName];
-				newState[propertyName][variableName] = newValue
-			}
-			else
-				newState[variableName] = newValue;
-			this.update(newState, true);
-		}
-
-		const increment = () => {
-			const newState = {preset: CUSTOM_INDEX};
-			const newValue = calculateValue(value+1);
-			if(!!propertyName) {
-				newState[propertyName] = this.state[propertyName];
-				newState[propertyName][variableName] = newValue
-			}
-			else
-				newState[variableName] = newValue;
-			this.update(newState, true);
-		}
-
-		return (
-			<Form.Group>
-				<Row>
-					<Col><strong><Form.Label dangerouslySetInnerHTML={{__html: label}} /></strong></Col>
-				</Row>
-				<Row>
-					<Col xs={12} sm={12} md={4}>
-						<InputGroup size="sm">
-								<InputGroup.Prepend>
-									<Button disabled={value == min} variant="dark" onClick={decrement}>-</Button>
-								</InputGroup.Prepend>
-								<Form.Control value={value} min={min} max={max} type="number" onChange={onInputChange} />
-								<InputGroup.Append>
-									<Button disabled={value == max} variant="dark" onClick={increment}>+</Button>
-								</InputGroup.Append>
-						</InputGroup>
-					</Col>
-					<Col xs={12} sm={12} md={8}>
-						<RangeSlider variant="dark" value={getSliderValue(value)} min={getSliderValue(min)} max={getSliderValue(max)} step={logSlider ? 0.01 : 1} onChange={onSliderChange} tooltip="off" />
-					</Col>
-				</Row>
-			</Form.Group>
-		)
-	}
-
 	renderChart = () => {
 		const {history} = this.state;
 		const chartOptions = {
@@ -212,6 +119,27 @@ class RestingMembranePotentialPage extends React.Component {
 		const nernstLatex = "E_{m}=-\\frac{RT}{F}\\ln \\frac{P_{K^{+}}[K^{+}]_{i}+P_{Na^{+}}[Na^{+}]_{i}+P_{Cl^{-}}[Cl^{-}]_{o}}{P_{K^{+}}[K^{+}]_{o}+P_{Na^{+}}[Na^{+}]_{o}+P_{Cl^{-}}[Cl^{-}]_{i}}";
 		return (<div>
 			<h1>Resting Membrane Potential</h1>
+			<p>The semi-permeability of a cell membrane allows for the division of fluid and solutes between two distinct 
+				compartments. An electrochemical dynamic equilibrium exists between the cytosol (cell interior) and the extracellular 
+				fluid. Solute concentration and electric charge differences across the cell membrane quantify the dynamic equilibrium. 
+				Diffusion creates a force driving the solutes from high concentration to low concentration. The separation of charged 
+				particles creates an electric potential, measured in millivolts (mV), which applies a force to bring the charge to zero. 
+				The electric force achieves an equilibrium potential, also measured in mV, when its force is equal and opposite to 
+				the force created by the chemical gradient.</p>
+			<p>Resting membrane potential is a measure of the cell’s electric potential at rest (no applied stimulus). In the human 
+				body, most cells, particularly neurons, have a resting membrane potential of -70 mV. Relative and selective permeability 
+				of the major in vivo ions, sodium (Na<sup>+</sup>), and potassium (K<sup>+</sup>), establishes the resting membrane potential. At rest, there 
+				are more Na<sup>+</sup> ions outside of the cell than inside. There are more K<sup>+</sup> ions inside the cell than outside. Primary active 
+				transport, using adenosine triphosphate (ATP) as a source of power, managed by the Na<sup>+</sup>/K<sup>+</sup> ATPase embedded in the membrane, 
+				helps maintain this concentration gradient by moving K+ into the cell and Na+ out of the cell. Selective passive transport 
+				channels in the membrane allow the free flow of Na+ and K+, known as leak channels. Cells have a much higher number of K<sup>+</sup> 
+				leak channels than Na<sup>+</sup>. A negative charge inside the cell is achieved by the high net flux of positive ions out of the cell. 
+				The measure of that charge is the resting membrane potential, and for most cells, it is -70 mV.</p>
+			<h2>Goldman Equation</h2>
+			<p>The Goldman equation calculates the resting membrane potential of a cell. There are several necessary aspects of the 
+				equation. First, concentrations of vital ions Na<sup>+</sup>, K<sup>+</sup>, and chlorine (Cl<sup>-</sup>) both inside and outside of the cell establishes 
+				the concentration gradient. The membrane permeability of the ions establishes each net flux. Finally, a constant, dependent 
+				on body temperature, normalizes the value in the human body.</p>
 			<p className="text-center"><MathJax.Provider><MathJax.Node inline formula={nernstLatex} /></MathJax.Provider></p>
 			<dl>
 				<dt>E<sub>m</sub></dt><dd>The resting membrane potential measured in millivolts (mV).</dd>
@@ -240,9 +168,10 @@ class RestingMembranePotentialPage extends React.Component {
 	renderForm = () => {
 		const {
 			restingMembranePotential,
-			preset,
-			ionIndex
+			preset
 		} = this.state;
+
+		const sharedRangeInputProps = {state: this.state, update: this.update}
 
 		return (
 			<Form>
@@ -252,21 +181,22 @@ class RestingMembranePotentialPage extends React.Component {
 							<Form.Label><strong>Presets</strong></Form.Label>
 							<Form.Control as="select" custom value={preset} onChange={this.updatePreset}>
 								{CellPresets.map((value,index) => (<option key={index} value={index}>{value.name}</option>))}
-								<option value={CUSTOM_INDEX}>Custom</option>
+								<option value={Constants.CUSTOM_INDEX}>Custom</option>
 							</Form.Control>
 						</Form.Group>
 					</Col>
 				</Row>
 				{Ions.map((ion,index) => {
+					const props = {propertyName: ion.propertyName, style: ion.style, ...sharedRangeInputProps}
 					return (
 						<div key={index}>
-							{this.rangeInput({label: `[${ion.shortNameHtml}]<sub>o</sub>`, propertyName: ion.propertyName, variableName: "concentrationOut", min: ion.concentrationOut.min, max: ion.concentrationOut.max})}
-							{this.rangeInput({label: `[${ion.shortNameHtml}]<sub>i</sub>`, propertyName: ion.propertyName, variableName: "concentrationIn", min: ion.concentrationIn.min, max: ion.concentrationIn.max})}
-							{this.rangeInput({label: `P<sub>${ion.shortNameHtml}</sub>`, logSlider: true, propertyName: ion.propertyName, variableName: "permeability", min: ion.permeability.min, max: ion.permeability.max})}
+							<RangeInput {...props} variableName="concentrationOut" min={ion.concentrationOut.min} max={ion.concentrationOut.max} label={`[${ion.shortNameHtml}]<sub>o</sub>`} />
+							<RangeInput {...props} variableName="concentrationIn" min={ion.concentrationIn.min} max={ion.concentrationIn.max} label={`[${ion.shortNameHtml}]<sub>i</sub>`} />
+							<RangeInput {...props} logSlider={true} variableName="permeability" min={ion.permeability.min} max={ion.permeability.max} label={`P<sub>${ion.shortNameHtml}</sub>`} />
 						</div>
 					)
 				})}
-						{this.rangeInput({label: "T (°C)", variableName: "temperature", min: 0, max: 100})}
+				<RangeInput {...sharedRangeInputProps} label="T (°C)" variableName="temperature" min={0} max={100} />
 				<Form.Group>
 					<Form.Label dangerouslySetInnerHTML={{__html: `<strong>E<sub>m</sub></strong>`}}></Form.Label>
 					<Form.Control value={restingMembranePotential.toFixed(1)} type="number" disabled />

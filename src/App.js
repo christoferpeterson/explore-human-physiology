@@ -8,10 +8,10 @@ import {Container,Row,Col,Nav,Navbar,NavDropdown} from "react-bootstrap";
 	
 import EquilibriumPotentialPage from './Potentials/EquilibriumPotentialPage';
 import RestingMembranePotentialPage from './Potentials/RestingMembranePotentialPage';
+import ActionPotentialPage from './Potentials/ActionPotentialPage';
 
 function App() {
 	const path = useLocation();
-	console.log(path);
 	return (
 		<div>
 			<Navbar bg="light" expand="lg">
@@ -31,6 +31,7 @@ function App() {
 								<NavDropdown title="Potentials">
 								<NavDropdown.Item href="/equilibrium-potential">Equilibrium Potential</NavDropdown.Item>
 								<NavDropdown.Item href="/resting-membrane-potential">Resting Membrane Potential</NavDropdown.Item>
+								<NavDropdown.Item href="/action-potential">Action Potential</NavDropdown.Item>
 								</NavDropdown>
 							</Nav.Item>
 						</Nav>
@@ -44,6 +45,9 @@ function App() {
 					</Route>
 					<Route path="/resting-membrane-potential">
 						<RestingMembranePotentialPage />
+					</Route>
+					<Route path="/action-potential">
+						<ActionPotentialPage />
 					</Route>
 				</Switch>
 			</Container>

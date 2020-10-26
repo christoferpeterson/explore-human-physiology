@@ -1,0 +1,5 @@
+export default {
+	CUSTOM_INDEX: -1,
+	HISTORY_INTERVAL: 200,
+	HISTORY_LENGTH: 100
+};
