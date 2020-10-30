@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/explore-human-physiology/precache-manifest.c38e04ee140871277f61c213738b1164.js"
+  "/explore-human-physiology/precache-manifest.222529b9bdf10b1f5a1836be3c52a95e.js"
 );
 
 self.addEventListener('message', (event) => {
