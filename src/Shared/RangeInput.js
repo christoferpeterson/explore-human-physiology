@@ -2,7 +2,6 @@ import React from "react";
 import {Row,Col,Form,Button,InputGroup} from "react-bootstrap";
 import RangeSlider from 'react-bootstrap-range-slider';
 import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
-import Constants from '../Shared/Constants';
 
 const RangeInput = ({
 	state = {},
@@ -22,7 +21,7 @@ const RangeInput = ({
 	const getSliderValue = (v) => logSlider ? Math.log10(v) : v;
 
 	const onInputChange = (event) => {
-		const newState = {preset: Constants.CUSTOM_INDEX};
+		const newState = {preset: -1};
 		const newValue = calculateValue(event.target.valueAsNumber);
 		if(!!propertyName) {
 			newState[propertyName] = state[propertyName];
@@ -34,7 +33,7 @@ const RangeInput = ({
 	};
 
 	const onSliderChange = (event) => {
-		const newState = {preset: Constants.CUSTOM_INDEX};
+		const newState = {preset: -1};
 		const newValue = (logSlider ? calculateLogValue : calculateValue)(event.target.valueAsNumber);
 		if(!!propertyName) {
 			newState[propertyName] = state[propertyName];
@@ -46,7 +45,7 @@ const RangeInput = ({
 	}
 
 	const decrement = () => {
-		const newState = {preset: Constants.CUSTOM_INDEX};
+		const newState = {preset: -1};
 		const newValue = calculateValue(value-1);
 		if(!!propertyName) {
 			newState[propertyName] = state[propertyName];
@@ -58,7 +57,7 @@ const RangeInput = ({
 	}
 
 	const increment = () => {
-		const newState = {preset: Constants.CUSTOM_INDEX};
+		const newState = {preset: -1};
 		const newValue = calculateValue(value+1);
 		if(!!propertyName) {
 			newState[propertyName] = state[propertyName];
