@@ -7,7 +7,8 @@ import Chart from "../Chart";
 import { StopFill, PlayFill, ArrowCounterclockwise } from 'react-bootstrap-icons';
 import MathJax from "react-mathjax";
 import RangeInput from '../Shared/RangeInput';
-import Constants from '../Shared/Constants';
+
+const Constants = {CUSTOM_INDEX:-1, HISTORY_INTERVAL:200, HISTORY_LENGTH:60};
 
 class RestingMembranePotentialPage extends React.Component {
 	constructor() {

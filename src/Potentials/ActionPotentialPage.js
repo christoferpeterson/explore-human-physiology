@@ -5,8 +5,12 @@ import CellPresets from "../data/CellPresets";
 import Chart from "../Chart";
 import { StopFill, PlayFill, ArrowCounterclockwise } from 'react-bootstrap-icons';
 import RangeInput from '../Shared/RangeInput';
-import Constants from '../Shared/Constants';
 import Ions from '../data/Ions';
+
+const Constants = {
+	HISTORY_INTERVAL: 200,
+	HISTORY_LENGTH: 100
+};
 
 const LOOP_INTERVAL = 50;
 const TIME_MULTIPLIER = 0.001;
@@ -23,15 +27,13 @@ class ActionPotentialPage extends React.Component {
 			sodium: { ...cellDefault.sodium },
 			potassium: { ...cellDefault.potassium, concentrationOut: 10, concentrationIn: 198 },
 			chloride: { ...cellDefault.chloride },
-			epspStrength: 15,
-			ipspStrength: 0,
-			gradedPotential: 0,
 			sodiumChannelRate: 0,
 			potassiumChannelRate: 0,
 			sodiumPermeabiltyRate: 0,
 			potassiumPermeabilityRate: 0,
 			history: [],
-			running:true
+			running:true,
+			firing: false
 		}
 		this.state.history = this.buildHistory(this.state);
 	}
@@ -60,8 +62,7 @@ class ActionPotentialPage extends React.Component {
 			},
 			sodiumPermeabiltyRate,
 			potassiumPermeabilityRate,
-			membranePotential,
-			gradedPotential
+			membranePotential
 		} = this.state;
 
 		const currentTime = new Date();
@@ -105,7 +106,7 @@ class ActionPotentialPage extends React.Component {
 					potassium: { ...this.state.potassium, permeability: newKPermeability },
 					sodium: { ...this.state.sodium, permeability: newNaPermeability }
 				}
-			) + gradedPotential;
+			);
 
 		const newHistory = [...this.state.history];
 		newHistory.push({x: this.totalTimeElapsed, y: newMembranePotential});
@@ -140,6 +141,7 @@ class ActionPotentialPage extends React.Component {
 		let newSodiumChannelRate = sodiumChannelRate;
 		let newPotassiumChannelRate = potassiumChannelRate;
 		let newGradedPotential = gradedPotential;
+		let stopFiring = false;
 
 		const goingUp = previousMembranePotential < membranePotential;
 		const goingDown = previousMembranePotential > membranePotential
@@ -156,27 +158,24 @@ class ActionPotentialPage extends React.Component {
 
 		if(membranePotential <= -30 && goingDown) {
 			newPotassiumChannelRate = -500
+			stopFiring = false;
 		}
-
+		
 		return {
 			sodiumChannelRate: newSodiumChannelRate,
 			potassiumChannelRate: newPotassiumChannelRate,
-			gradedPotential: newGradedPotential
+			gradedPotential: newGradedPotential,
+			stopFiring
 		};
 	}
 
 	handleFireActionPotential = () => {
-		const {
-			ipspStrength,
-			epspStrength
-		} = this.state;
-
-		this.update({gradedPotential: epspStrength - ipspStrength});
+		this.update({sodiumChannelRate: 100, firing: true}, () => setTimeout(() => this.update({firing: false}), 1000));
 	}
 
-	update = (newState) => {
+	update = (newState, cb) => {
 		const updatedState = {...this.state, ...newState};
-		this.setState(updatedState);
+		this.setState(updatedState, cb);
 	}
 	
 	renderChart = () => {
@@ -220,7 +219,8 @@ class ActionPotentialPage extends React.Component {
 
 	render = () => {
 		const {
-			running
+			running,
+			firing
 		} = this.state;
 		return (
 			<Row>
@@ -230,15 +230,17 @@ class ActionPotentialPage extends React.Component {
 						<Col>{this.renderForm()}</Col>
 					</Row>
 					<Row>
+						<Col className="text-center">
+							<Button disabled={firing} variant="danger" onClick={this.handleFireActionPotential}>Fire an action potential!</Button>
+						</Col>
+					</Row>
+					<Row>
 						<Col>{this.renderChart()}</Col>
 					</Row>
 					<Row>
-						<Col>
-							{/* {!!running && <Button variant="danger" onClick={this.stopHistory}><StopFill /> Stop</Button>}
-							{!running && <Button variant="success" onClick={this.startHistory}><PlayFill /> Play</Button>}
-							<Button variant="dark" onClick={this.resetHistory}><ArrowCounterclockwise /> Reset</Button> */}
-							<Button variant="primary" onClick={this.handleFireActionPotential}>Fire!</Button>
-						</Col>
+						{!!running && <Button variant="danger" onClick={this.stopHistory}><StopFill /> Stop</Button>}
+						{!running && <Button variant="success" onClick={this.startHistory}><PlayFill /> Play</Button>}
+						<Button variant="dark" onClick={this.resetHistory}><ArrowCounterclockwise /> Reset</Button>
 					</Row>
 				</Col>
 			</Row>

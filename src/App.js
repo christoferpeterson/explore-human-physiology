@@ -2,6 +2,7 @@ import React from 'react';
 import {
 	Switch,
 	Route,
+	Link,
 	useLocation
 } from "react-router-dom";
 import {Container,Row,Col,Nav,Navbar,NavDropdown} from "react-bootstrap";
@@ -29,9 +30,9 @@ function App() {
 						<Nav>
 							<Nav.Item>
 								<NavDropdown title="Potentials">
-								<NavDropdown.Item href="/equilibrium-potential">Equilibrium Potential</NavDropdown.Item>
-								<NavDropdown.Item href="/resting-membrane-potential">Resting Membrane Potential</NavDropdown.Item>
-								<NavDropdown.Item href="/action-potential">Action Potential</NavDropdown.Item>
+								<NavDropdown.Item><Link to="equilibrium-potential">Equilibrium Potential</Link></NavDropdown.Item>
+								<NavDropdown.Item><Link to="resting-membrane-potential">Resting Membrane Potential</Link></NavDropdown.Item>
+								<NavDropdown.Item><Link to="action-potential">Action Potential</Link></NavDropdown.Item>
 								</NavDropdown>
 							</Nav.Item>
 						</Nav>
@@ -40,6 +41,9 @@ function App() {
 				{/* A <Switch> looks through its children <Route>s and
 				renders the first one that matches the current URL. */}
 				<Switch>
+					<Route exact path="/">
+						<div>homepage</div>
+					</Route>
 					<Route path="/equilibrium-potential">
 						<EquilibriumPotentialPage />
 					</Route>
@@ -49,6 +53,7 @@ function App() {
 					<Route path="/action-potential">
 						<ActionPotentialPage />
 					</Route>
+          <Route component={() => (<div>404 Not found </div>)} />
 				</Switch>
 			</Container>
 		</div>
