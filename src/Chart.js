@@ -17,12 +17,7 @@ class Chart extends React.Component {
 			title:{
 				text: chartTitle
 			},
-			data: [
-			{
-				type: "line",
-				markerSize: 0,
-				dataPoints: data
-			}]
+			data
 		};
 		
 	return (
