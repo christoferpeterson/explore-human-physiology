@@ -6,7 +6,8 @@ import {
 	useLocation
 } from "react-router-dom";
 import {Container,Row,Col,Nav,Navbar,NavDropdown} from "react-bootstrap";
-	
+
+import HomePage from './HomePage';
 import EquilibriumPotentialPage from './Potentials/EquilibriumPotentialPage';
 import RestingMembranePotentialPage from './Potentials/RestingMembranePotentialPage';
 import ActionPotentialPage from './Potentials/ActionPotentialPage';
@@ -42,7 +43,7 @@ function App() {
 				renders the first one that matches the current URL. */}
 				<Switch>
 					<Route exact path="/">
-						<div>homepage</div>
+						<HomePage />
 					</Route>
 					<Route path="/equilibrium-potential">
 						<EquilibriumPotentialPage />
