@@ -1,3 +1,5 @@
+This is a school project for University of Colorado Denver Fall 202 BIOL3225.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

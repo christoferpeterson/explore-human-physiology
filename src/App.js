@@ -8,9 +8,10 @@ import {
 import {Container,Row,Col,Nav,Navbar,NavDropdown} from "react-bootstrap";
 
 import HomePage from './HomePage';
-import EquilibriumPotentialPage from './Potentials/EquilibriumPotentialPage';
-import RestingMembranePotentialPage from './Potentials/RestingMembranePotentialPage';
-import ActionPotentialPage from './Potentials/ActionPotentialPage';
+import EquilibriumPotentialPage from './PotentialPages/EquilibriumPotentialPage';
+import RestingMembranePotentialPage from './PotentialPages/RestingMembranePotentialPage';
+import ActionPotentialPage from './PotentialPages/ActionPotentialPage';
+import SarcomerePage from './FunctionalUnitPages/SarcomerePage';
 
 function App() {
 	const path = useLocation();
@@ -36,6 +37,11 @@ function App() {
 								<NavDropdown.Item><Link to="action-potential">Action Potential</Link></NavDropdown.Item>
 								</NavDropdown>
 							</Nav.Item>
+							<Nav.Item>
+								<NavDropdown title="Functional Units">
+									<NavDropdown.Item><Link to="sarcomere">Sarcomere</Link></NavDropdown.Item>
+								</NavDropdown>
+							</Nav.Item>
 						</Nav>
 					</Col>
 				</Row>
@@ -53,6 +59,9 @@ function App() {
 					</Route>
 					<Route path="/action-potential">
 						<ActionPotentialPage />
+					</Route>
+					<Route path="/sarcomere">
+						<SarcomerePage />
 					</Route>
           <Route component={() => (<div>404 Not found </div>)} />
 				</Switch>
