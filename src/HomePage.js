@@ -4,7 +4,7 @@ import {
 	Link
 } from "react-router-dom";
 
-export default () => {
+const HomePage = () => {
   return (
     <Jumbotron>
       <h1>Explore Human Physiology</h1>
@@ -14,3 +14,5 @@ export default () => {
     </Jumbotron>
   )
 }
+
+export default HomePage;

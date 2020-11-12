@@ -1,4 +1,4 @@
-export default [
+const Ions = [
 	{ 
 		displayName: "Potassium", 
 		propertyName: "potassium",
@@ -58,3 +58,5 @@ export default [
 		}
 	}
 ]
+
+export default Ions;

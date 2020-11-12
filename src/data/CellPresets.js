@@ -1,4 +1,4 @@
-export default [
+const CellPresets = [
 	{ 
 		name: "Default",
 		potassium: {
@@ -95,3 +95,5 @@ export default [
 		T: 37 
 	}
 ]
+
+export default CellPresets;

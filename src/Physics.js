@@ -39,4 +39,6 @@ const calculateGoldman = (props) => {
 	return -R * CtoK(T) / F * Math.log((permK * cInK + permNa * cInNa + permCl * cOutCl) / (permK * cOutK + permNa * cOutNa + permCl * cInCl)) * 1000;
 }
 
-export default { R, F, CtoK, calculateNernst, calculateGoldman };
+const Physics = { R, F, CtoK, calculateNernst, calculateGoldman };
+
+export default Physics;
