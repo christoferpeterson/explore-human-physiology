@@ -305,16 +305,6 @@ class ActionPotentialPage extends React.Component {
 				The form and graph on this page can be used to visualize how an action potential changes the membrane potential of a cell. Click
 				"Fire an action potential!" to propagate an action potential through an infinitesimally small section of a standard human neuron.
 			</p>
-			<hr />
-			<small>
-				<ol style={{paddingLeft:"1em"}}>
-					<li>Greene, M. (2020). <i>Lectures 8 &amp; 9 Graded and Action Potentials</i>, lecture notes, BIOL3225 Human Physiology BIOL3225, University of Colorado Denver, delivered 09 Sep 2020 &amp; 16 Sep 2020</li>
-					<li><a href="http://www.nernstgoldman.physiology.arizona.edu/" target="blank">The Nernst/Goldman Equation Simulator. (n.d.). Retrieved October 22, 2020, from http://www.nernstgoldman.physiology.arizona.edu/</a></li>
-					<li>Widmaier, E. P., Vander, A. J., Raff, H., &amp; Strang, K. T. (2019). 6.7 Graded and Action Potentials. In <em>Vander's human physiology: The mechanisms of body function</em> (p. 149-158). New York, NY: McGraw-Hill Education.</li>
-					<li><a href="https://journals.physiology.org/doi/full/10.1152/advan.00029.2004" target="blank">Wright, S. H. (2004). Generation of resting membrane potential. <em>Advances in Physiology Education</em>, 28(4), 139-142. doi:10.1152/advan.00029.2004</a></li>
-					<li><a href="https://www.ncbi.nlm.nih.gov/books/NBK538143/" target="blank">Grider, M. (2020, September 10). Physiology, Action Potential. Retrieved November 03, 2020, from https://www.ncbi.nlm.nih.gov/books/NBK538143/</a></li>
-				</ol>
-			</small>
 		</div>)
 	}
 
@@ -333,38 +323,60 @@ class ActionPotentialPage extends React.Component {
 		)
 	}
 
+	renderReferences = () => {
+		return (
+			<div>
+				<hr />
+				<small>
+					<ol style={{paddingLeft:"1em", maxWidth:"60em"}}>
+						<li>Greene, M. (2020). <i>Lectures 8 &amp; 9 Graded and Action Potentials</i>, lecture notes, BIOL3225 Human Physiology BIOL3225, University of Colorado Denver, delivered 09 Sep 2020 &amp; 16 Sep 2020</li>
+						<li><a href="http://www.nernstgoldman.physiology.arizona.edu/" target="blank">The Nernst/Goldman Equation Simulator. (n.d.). Retrieved October 22, 2020, from http://www.nernstgoldman.physiology.arizona.edu/</a></li>
+						<li>Widmaier, E. P., Vander, A. J., Raff, H., &amp; Strang, K. T. (2019). 6.7 Graded and Action Potentials. In <em>Vander's human physiology: The mechanisms of body function</em> (p. 149-158). New York, NY: McGraw-Hill Education.</li>
+						<li><a href="https://journals.physiology.org/doi/full/10.1152/advan.00029.2004" target="blank">Wright, S. H. (2004). Generation of resting membrane potential. <em>Advances in Physiology Education</em>, 28(4), 139-142. doi:10.1152/advan.00029.2004</a></li>
+						<li><a href="https://www.ncbi.nlm.nih.gov/books/NBK538143/" target="blank">Grider, M. (2020, September 10). Physiology, Action Potential. Retrieved November 03, 2020, from https://www.ncbi.nlm.nih.gov/books/NBK538143/</a></li>
+					</ol>
+				</small>
+			</div>
+		)
+	}
+
 	render = () => {
 		const {
 			running,
 			firing
 		} = this.state;
 		return (
-			<Row>
-				<Col xs={12} sm={12} md={6}>{this.renderDescription()}</Col>
-				<Col xs={12} sm={12} md={6}>
-					<Row>
-						<Col>
-							<img src={Helpers.buildPublicUrl("actionpotential.svg")}></img>
-						</Col>
-					</Row>
-					<Row>
-						<Col>{this.renderForm()}</Col>
-					</Row>
-					<Row>
-						<Col className="text-center">
-							<Button disabled={firing} variant="danger" onClick={this.handleFireActionPotential}>Fire an action potential!</Button>
-						</Col>
-					</Row>
-					<Row>
-						<Col>{this.renderChart()}</Col>
-					</Row>
-					<Row>
-						{!!running && <Button variant="danger" onClick={this.stopLoop}><StopFill /> Stop</Button>}
-						{!running && <Button variant="success" onClick={this.startLoop}><PlayFill /> Play</Button>}
-						<Button variant="dark" disabled onClick={this.resetLoop}><ArrowCounterclockwise /> Reset</Button>
-					</Row>
-				</Col>
-			</Row>
+			<div>
+				<Row>
+					<Col xs={12} sm={12} md={6}>{this.renderDescription()}</Col>
+					<Col xs={12} sm={12} md={6}>
+						<Row>
+							<Col>
+								<img src={Helpers.buildPublicUrl("actionpotential.svg")}></img>
+							</Col>
+						</Row>
+						<Row>
+							<Col>{this.renderForm()}</Col>
+						</Row>
+						<Row>
+							<Col className="text-center">
+								<Button disabled={firing} variant="danger" onClick={this.handleFireActionPotential}>Fire an action potential!</Button>
+							</Col>
+						</Row>
+						<Row>
+							<Col>{this.renderChart()}</Col>
+						</Row>
+						<Row>
+							{!!running && <Button variant="danger" onClick={this.stopLoop}><StopFill /> Stop</Button>}
+							{!running && <Button variant="success" onClick={this.startLoop}><PlayFill /> Play</Button>}
+							<Button variant="dark" disabled onClick={this.resetLoop}><ArrowCounterclockwise /> Reset</Button>
+						</Row>
+					</Col>
+				</Row>
+				<Row>
+					<Col>{this.renderReferences()}</Col>
+				</Row>
+			</div>
 		);
 	}
 }

@@ -169,15 +169,6 @@ class EquilibriumPotentialPage extends React.Component {
 				values for the Nernst equation variables and see how the equilibrium potential changes on the graph. Press stop to freeze the graph
 				in place, press play to begin recording data, again, and press reset to clear out the old data.
 			</p>
-			<hr />
-			<small>
-				<ol style={{paddingLeft:"1em"}}>
-					<li>Greene, M. (2020). <i>Lectures 4 Feedback Membrane Potential</i>, lecture notes, BIOL3225 Human Physiology BIOL3225, University of Colorado Denver, delivered 26 Aug 2020</li>
-					<li><a href="http://www.nernstgoldman.physiology.arizona.edu/" target="blank">The Nernst/Goldman Equation Simulator. (n.d.). Retrieved October 22, 2020, from http://www.nernstgoldman.physiology.arizona.edu/</a></li>
-					<li>Widmaier, E. P., Vander, A. J., Raff, H., &amp; Strang, K. T. (2019). 6.6 The Resting Membrane Potential. In <em>Vander's human physiology: The mechanisms of body function</em> (p. 145). New York, NY: McGraw-Hill Education.</li>
-					<li><a href="https://journals.physiology.org/doi/full/10.1152/advan.00029.2004" target="blank">Wright, S. H. (2004). Generation of resting membrane potential. <em>Advances in Physiology Education</em>, 28(4), 139-142. doi:10.1152/advan.00029.2004</a></li>
-				</ol>
-			</small>
 		</div>)
 	}
 
@@ -223,29 +214,50 @@ class EquilibriumPotentialPage extends React.Component {
 		)
 	}
 
+	renderReferences = () => {
+		return (
+			<div>
+				<hr />
+				<small>
+					<ol style={{paddingLeft:"1em", maxWidth:"60em"}}>
+						<li>Greene, M. (2020). <i>Lectures 4 Feedback Membrane Potential</i>, lecture notes, BIOL3225 Human Physiology BIOL3225, University of Colorado Denver, delivered 26 Aug 2020</li>
+						<li><a href="http://www.nernstgoldman.physiology.arizona.edu/" target="blank">The Nernst/Goldman Equation Simulator. (n.d.). Retrieved October 22, 2020, from http://www.nernstgoldman.physiology.arizona.edu/</a></li>
+						<li>Widmaier, E. P., Vander, A. J., Raff, H., &amp; Strang, K. T. (2019). 6.6 The Resting Membrane Potential. In <em>Vander's human physiology: The mechanisms of body function</em> (p. 145). New York, NY: McGraw-Hill Education.</li>
+						<li><a href="https://journals.physiology.org/doi/full/10.1152/advan.00029.2004" target="blank">Wright, S. H. (2004). Generation of resting membrane potential. <em>Advances in Physiology Education</em>, 28(4), 139-142. doi:10.1152/advan.00029.2004</a></li>
+					</ol>
+				</small>
+			</div>
+		)
+	}
+
 	render = () => {
 		const {
 			running
 		} = this.state;
 		return (
-			<Row>
-				<Col xs={12} sm={12} md={6}>{this.renderDescription()}</Col>
-				<Col xs={12} sm={12} md={6}>
-					<Row>
-						<Col>{this.renderForm()}</Col>
-					</Row>
-					<Row>
-						<Col>{this.renderChart()}</Col>
-					</Row>
-					<Row>
-						<Col>
-							{!!running && <Button variant="danger" onClick={this.stopHistory}><StopFill /> Stop</Button>}
-							{!running && <Button variant="success" onClick={this.startHistory}><PlayFill /> Play</Button>}
-							<Button variant="dark" onClick={this.resetHistory}><ArrowCounterclockwise /> Reset</Button>
-						</Col>
-					</Row>
-				</Col>
-			</Row>
+			<div>
+				<Row>
+					<Col xs={12} sm={12} md={6}>{this.renderDescription()}</Col>
+					<Col xs={12} sm={12} md={6}>
+						<Row>
+							<Col>{this.renderForm()}</Col>
+						</Row>
+						<Row>
+							<Col>{this.renderChart()}</Col>
+						</Row>
+						<Row>
+							<Col>
+								{!!running && <Button variant="danger" onClick={this.stopHistory}><StopFill /> Stop</Button>}
+								{!running && <Button variant="success" onClick={this.startHistory}><PlayFill /> Play</Button>}
+								<Button variant="dark" onClick={this.resetHistory}><ArrowCounterclockwise /> Reset</Button>
+							</Col>
+						</Row>
+					</Col>
+				</Row>
+				<Row>
+					<Col>{this.renderReferences()}</Col>
+				</Row>
+			</div>
 		);
 	}
 }
