@@ -19,7 +19,7 @@ function App() {
 		<div>
 			<Navbar style={{marginBottom:20}} bg="light" expand="lg">
 				<Container>
-					<Navbar.Brand href="/">Explore Human Physiology</Navbar.Brand>
+					<Navbar.Brand href="#">Explore Human Physiology</Navbar.Brand>
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="mr-auto">
