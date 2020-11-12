@@ -5,7 +5,9 @@ import {
 	Link,
 	useLocation
 } from "react-router-dom";
-import {Container,Row,Col,Nav,Navbar,NavDropdown} from "react-bootstrap";
+import {Container,Row,Col,Nav,Navbar,NavDropdown,NavLink,Form,FormControl,Button} from "react-bootstrap";
+
+import { CodeSquare } from 'react-bootstrap-icons';
 
 import HomePage from './HomePage';
 import EquilibriumPotentialPage from './PotentialPages/EquilibriumPotentialPage';
@@ -17,34 +19,30 @@ function App() {
 	const path = useLocation();
 	return (
 		<div>
-			<Navbar bg="light" expand="lg">
+			<Navbar style={{marginBottom:20}} bg="light" expand="lg">
 				<Container>
-					<Row>
-						<Col>
-							<Navbar.Brand href="/">Explore Human Physiology</Navbar.Brand>
-						</Col>
-					</Row>
-				</Container>
-			</Navbar>
-			<Container className="App">
-				<Row>
-					<Col>
-						<Nav>
-							<Nav.Item>
-								<NavDropdown title="Potentials">
+					<Navbar.Brand href="/">Explore Human Physiology</Navbar.Brand>
+					<Navbar.Toggle aria-controls="basic-navbar-nav" />
+					<Navbar.Collapse id="basic-navbar-nav">
+						<Nav className="mr-auto">
+							<NavDropdown title="Potentials" id="basic-nav-dropdown">
 								<NavDropdown.Item><Link to="equilibrium-potential">Equilibrium Potential</Link></NavDropdown.Item>
 								<NavDropdown.Item><Link to="resting-membrane-potential">Resting Membrane Potential</Link></NavDropdown.Item>
 								<NavDropdown.Item><Link to="action-potential">Action Potential</Link></NavDropdown.Item>
-								</NavDropdown>
-							</Nav.Item>
-							<Nav.Item>
-								<NavDropdown title="Functional Units">
-									<NavDropdown.Item><Link to="sarcomere">Sarcomere</Link></NavDropdown.Item>
-								</NavDropdown>
-							</Nav.Item>
+							</NavDropdown>
+							<NavDropdown title="Functional Units" id="basic-nav-dropdown">
+								<NavDropdown.Item><Link to="sarcomere">Sarcomere</Link></NavDropdown.Item>
+							</NavDropdown>
 						</Nav>
-					</Col>
-				</Row>
+						<NavLink style={{paddingLeft:0}} className="ml-auto" href="https://github.com/christoferpeterson/explore-human-physiology" target="_blank"><CodeSquare /> Contribute</NavLink>
+						{/* <Form inline>
+							<FormControl type="text" placeholder="Search" className="mr-sm-2" />
+							<Button variant="outline-success">Search</Button>
+						</Form> */}
+					</Navbar.Collapse>
+				</Container>
+			</Navbar>
+			<Container className="App">
 				{/* A <Switch> looks through its children <Route>s and
 				renders the first one that matches the current URL. */}
 				<Switch>
