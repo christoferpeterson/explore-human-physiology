@@ -2,10 +2,10 @@ import React from "react";
 
 const Sarcomere = ({contractionLevel = 0, resting = true}) => {
   const myosinHeadRotation = resting ? 0 : (45 + 90 * contractionLevel);
-  const filamentShift = 100 * contractionLevel;
+  const filamentShift = 90 * contractionLevel;
 
   return (
-    <svg viewBox="0 0 800 600" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 800 585" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <rect id="actin" width="300" height="8" stroke="darkblue" fill="blue" strokeWidth="1" />
       <ellipse id="myosin-head" rx="20" ry="10" stroke="red" fill="pink" strokeWidth="2" transform={`rotate(${myosinHeadRotation})`} />
@@ -41,7 +41,7 @@ const Sarcomere = ({contractionLevel = 0, resting = true}) => {
           <rect width="8" height="200" stroke="black" fill="black" strokeWidth="1"/>
           <use xlinkHref="#actin" transform="translate(8, 0)" />
           <use xlinkHref="#actin" transform="translate(8, 192)" />
-          <use xlinkHref="#titin" transform="translate(0, 96)" />
+          <use xlinkHref="#titin" transform="translate(0, 100)" />
         </g>
         <use xlinkHref="#myosin" />
         <use xlinkHref="#myosin" transform="scale(1, -1) translate(0 -192)" />
@@ -54,6 +54,15 @@ const Sarcomere = ({contractionLevel = 0, resting = true}) => {
     <use xlinkHref="#sarcomere" />
     <use xlinkHref="#sarcomere" transform="translate(0, 192)" />
     <use xlinkHref="#sarcomere" transform="translate(0, 384)" />
+    <use xlinkHref="#sarcomere" transform="translate(0, 576)" />
+    <use xlinkHref="#sarcomere" transform={`translate(${-790+(filamentShift*2)}, -96)`} />
+    <use xlinkHref="#sarcomere" transform={`translate(${-790+(filamentShift*2)}, 96)`} />
+    <use xlinkHref="#sarcomere" transform={`translate(${-790+(filamentShift*2)}, 288)`} />
+    <use xlinkHref="#sarcomere" transform={`translate(${-790+(filamentShift*2)}, 480)`} />
+    <use xlinkHref="#sarcomere" transform={`translate(${790-(filamentShift*2)}, -96)`} />
+    <use xlinkHref="#sarcomere" transform={`translate(${790-(filamentShift*2)}, 96)`} />
+    <use xlinkHref="#sarcomere" transform={`translate(${790-(filamentShift*2)}, 288)`} />
+    <use xlinkHref="#sarcomere" transform={`translate(${790-(filamentShift*2)}, 480)`} />
   </svg>
   )
 }

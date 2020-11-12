@@ -38,15 +38,13 @@ class SarcomerePage extends React.Component {
 		}
 
 		if(canRelease) {
-			this.setState({canRelease: false})
+			this.setState({canRelease: false, resting: true})
 			this.releaseAnimation = setInterval(() => {
 				let { contractionLevel: newContractionLevel } = this.state;
 				newContractionLevel -= CONTRATION_RATE;
-				console.log(newContractionLevel);
 				if(newContractionLevel <= 0) {
 					newContractionLevel = 0;
 					clearInterval(this.releaseAnimation)
-					this.setState({resting: true})
 				}
 				this.setState({ contractionLevel: newContractionLevel })
 			}, ANIMATION_INTERVAL)
