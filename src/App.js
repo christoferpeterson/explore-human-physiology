@@ -5,7 +5,7 @@ import {
 	Link,
 	useLocation
 } from "react-router-dom";
-import {Container,Row,Col,Nav,Navbar,NavDropdown,NavLink,Form,FormControl,Button} from "react-bootstrap";
+import {Container,Nav,Navbar,NavDropdown,NavLink} from "react-bootstrap";
 
 import { CodeSquare } from 'react-bootstrap-icons';
 
@@ -16,7 +16,7 @@ import ActionPotentialPage from './PotentialPages/ActionPotentialPage';
 import SarcomerePage from './FunctionalUnitPages/SarcomerePage';
 
 function App() {
-	const path = useLocation();
+	//const path = useLocation();
 	return (
 		<div>
 			<Navbar style={{marginBottom:20}} bg="light" expand="lg">

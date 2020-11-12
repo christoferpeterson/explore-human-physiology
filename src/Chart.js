@@ -1,14 +1,9 @@
 import React from "react";
 import CanvasJSReact from './externals/canvasjs/canvasjs.react';
 
-const CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class Chart extends React.Component {
-	constructor() {
-		super()
-	}
-
 	render = () => {
 		const { chartTitle, data, options } = this.props;
 

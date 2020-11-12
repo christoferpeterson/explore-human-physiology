@@ -1,5 +1,5 @@
 import React from "react";
-import {Row,Col,Form,Button,InputGroup} from "react-bootstrap";
+import {Row,Col,Form,Button} from "react-bootstrap";
 import Physics from "../Physics";
 import CellPresets from "../data/CellPresets";
 import Ions from "../data/Ions";

@@ -1,5 +1,5 @@
 import React from "react";
-import {Row,Col,Form,Button,InputGroup} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 import Sarcomere from "../Shared/Sarcomere";
 
 const ANIMATION_SPEED = 2000;
