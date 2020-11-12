@@ -75,11 +75,11 @@ const RangeInput = ({
 				<Col xs={10} sm={10} md={4}>
 					<InputGroup size="sm">
 							<InputGroup.Prepend>
-								<Button disabled={value == min} variant={style} onClick={decrement}>-</Button>
+								<Button disabled={value === min} variant={style} onClick={decrement}>-</Button>
 							</InputGroup.Prepend>
 							<Form.Control value={value} min={min} max={max} type="number" onChange={onInputChange} />
 							<InputGroup.Append>
-								<Button disabled={value == max} variant={style} onClick={increment}>+</Button>
+								<Button disabled={value === max} variant={style} onClick={increment}>+</Button>
 							</InputGroup.Append>
 					</InputGroup>
 				</Col>
