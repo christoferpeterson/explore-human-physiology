@@ -7,8 +7,6 @@ name: CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -19,16 +17,23 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      
+      - name: 🛎️ Checkout # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: 🔧 Install and Build
         run: |
-          echo ###################### INSTALLING DEPENDENCIES ######################
           npm i
-          echo #################### SETTING DEPLOYMENT IDENTITY ####################
-          git config user.email "christoferjpeterson@gmail.com"
-          git config user.name "Christofer Peterson"
-          echo ############################# DEPLOYING #############################
-          npm run deploy
+          npm run build
+      
+      - name: 🚀 Deploy
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: build # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch
+          
+
