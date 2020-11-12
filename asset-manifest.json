@@ -1,22 +1,20 @@
 {
   "files": {
-    "main.js": "/explore-human-physiology/static/js/main.793df332.chunk.js",
-    "main.js.map": "/explore-human-physiology/static/js/main.793df332.chunk.js.map",
-    "runtime-main.js": "/explore-human-physiology/static/js/runtime-main.54f7dc23.js",
-    "runtime-main.js.map": "/explore-human-physiology/static/js/runtime-main.54f7dc23.js.map",
-    "static/css/2.68fa1acf.chunk.css": "/explore-human-physiology/static/css/2.68fa1acf.chunk.css",
-    "static/js/2.16ddbc3e.chunk.js": "/explore-human-physiology/static/js/2.16ddbc3e.chunk.js",
-    "static/js/2.16ddbc3e.chunk.js.map": "/explore-human-physiology/static/js/2.16ddbc3e.chunk.js.map",
+    "main.js": "/explore-human-physiology/static/js/main.eb74aee8.chunk.js",
+    "main.js.map": "/explore-human-physiology/static/js/main.eb74aee8.chunk.js.map",
+    "runtime-main.js": "/explore-human-physiology/static/js/runtime-main.f02642ce.js",
+    "runtime-main.js.map": "/explore-human-physiology/static/js/runtime-main.f02642ce.js.map",
+    "static/css/2.5c86dc43.chunk.css": "/explore-human-physiology/static/css/2.5c86dc43.chunk.css",
+    "static/js/2.3c84c9ac.chunk.js": "/explore-human-physiology/static/js/2.3c84c9ac.chunk.js",
+    "static/js/2.3c84c9ac.chunk.js.map": "/explore-human-physiology/static/js/2.3c84c9ac.chunk.js.map",
     "index.html": "/explore-human-physiology/index.html",
-    "precache-manifest.0c7d823770df16a9e7135e82ba91bf80.js": "/explore-human-physiology/precache-manifest.0c7d823770df16a9e7135e82ba91bf80.js",
-    "service-worker.js": "/explore-human-physiology/service-worker.js",
-    "static/css/2.68fa1acf.chunk.css.map": "/explore-human-physiology/static/css/2.68fa1acf.chunk.css.map",
-    "static/js/2.16ddbc3e.chunk.js.LICENSE.txt": "/explore-human-physiology/static/js/2.16ddbc3e.chunk.js.LICENSE.txt"
+    "static/css/2.5c86dc43.chunk.css.map": "/explore-human-physiology/static/css/2.5c86dc43.chunk.css.map",
+    "static/js/2.3c84c9ac.chunk.js.LICENSE.txt": "/explore-human-physiology/static/js/2.3c84c9ac.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.54f7dc23.js",
-    "static/css/2.68fa1acf.chunk.css",
-    "static/js/2.16ddbc3e.chunk.js",
-    "static/js/main.793df332.chunk.js"
+    "static/js/runtime-main.f02642ce.js",
+    "static/css/2.5c86dc43.chunk.css",
+    "static/js/2.3c84c9ac.chunk.js",
+    "static/js/main.eb74aee8.chunk.js"
   ]
 }
