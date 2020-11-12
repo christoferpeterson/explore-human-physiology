@@ -2,8 +2,7 @@ import React from 'react';
 import {
 	Switch,
 	Route,
-	Link,
-	useLocation
+	Link
 } from "react-router-dom";
 import {Container,Nav,Navbar,NavDropdown,NavLink} from "react-bootstrap";
 
@@ -16,7 +15,6 @@ import ActionPotentialPage from './PotentialPages/ActionPotentialPage';
 import SarcomerePage from './FunctionalUnitPages/SarcomerePage';
 
 function App() {
-	//const path = useLocation();
 	return (
 		<div>
 			<Navbar style={{marginBottom:20}} bg="light" expand="lg">

@@ -352,7 +352,7 @@ class ActionPotentialPage extends React.Component {
 					<Col xs={12} sm={12} md={6}>
 						<Row>
 							<Col>
-								<img src={Helpers.buildPublicUrl("actionpotential.svg")}></img>
+								<img alt="Graph of action potential with meaningful events labeled" src={Helpers.buildPublicUrl("actionpotential.svg")}></img>
 							</Col>
 						</Row>
 						<Row>
