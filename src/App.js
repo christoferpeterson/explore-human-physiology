@@ -23,12 +23,12 @@ function App() {
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="mr-auto">
-							<NavDropdown title="Potentials" id="basic-nav-dropdown">
+							<NavDropdown title="Nervous System" id="basic-nav-dropdown">
 								<NavDropdown.Item><Link to="equilibrium-potential">Equilibrium Potential</Link></NavDropdown.Item>
 								<NavDropdown.Item><Link to="resting-membrane-potential">Resting Membrane Potential</Link></NavDropdown.Item>
 								<NavDropdown.Item><Link to="action-potential">Action Potential</Link></NavDropdown.Item>
 							</NavDropdown>
-							<NavDropdown title="Functional Units" id="basic-nav-dropdown">
+							<NavDropdown title="Muscular System" id="basic-nav-dropdown">
 								<NavDropdown.Item><Link to="sarcomere">Sarcomere</Link></NavDropdown.Item>
 							</NavDropdown>
 						</Nav>

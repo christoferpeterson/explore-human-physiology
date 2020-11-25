@@ -300,11 +300,28 @@ class ActionPotentialPage extends React.Component {
 				approach the <Link to="equilibrium-potential">equilibrium potential</Link> of K<sup>+</sup> (approximately -90 mv). The VG K<sup>+</sup> will eventually close allowing
 				RMP to be restored.
 			</p>
-			<h3>Demonstrations</h3>
+			<h2>The Bigger Picture</h2>
 			<p>
-				The form and graph on this page can be used to visualize how an action potential changes the membrane potential of a cell. Click
-				"Fire an action potential!" to propagate an action potential through an infinitesimally small section of a standard human neuron.
+				Action potentials are how excitable cells propagate signals to neighboring cells. While frequently modeled by the neuron,
+				action potentials occur in any excitable cell. The heart, for example, propagates action potentials across cardiac muscles
+				to coordinate a heart beat. 
 			</p>
+			<h2>Toxicology</h2>
+			<p>
+				Tetrodotoxin is a potent neurotoxin produced by animals such as rough-skinned newts, pufferfish, and blue-ringed octopuses.
+				It acts by blocking voltage-gated sodium channels. Without the ability for the membrane permeability of sodium of axons
+				to increase upon reachin threshold, an action potential can never fire. This prevents the propagation of signals along
+				axons. In small doses on non-vital neurons, a tingling sensation and loss of motor control occurs. In large doses or when applied
+				to vital neurons such as those in the autonomic nervous system, the toxin can disrupt vital physiological processes leading to
+				death. No amount of graded potentials will cause an action potentials if depolarization by voltage-gated sodium channels cannot
+				occur.
+			</p>
+			<h3>Take it Further</h3>
+			<ul>
+				<li>A collection of peptide toxins produced by cnidarians block the voltage-gated potassium channel. What affect would these have on an action potential?</li>
+				<li>A fictional toxin causes the voltage-gated potassium channels to open and close just as fast as the sodium channels. What would happen?</li>
+				<li>A drug inhibits the sodium-potassium pump. How does that affect an action potential? (hint: look at the pharmacology section of the resting membrane potential page)</li>
+			</ul>
 		</div>)
 	}
 
@@ -329,6 +346,7 @@ class ActionPotentialPage extends React.Component {
 				<hr />
 				<small>
 					<ol style={{paddingLeft:"1em", maxWidth:"60em"}}>
+						<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3663409/" target="_blank">Geffeney, S. L., Ruben, P. C. (2006). The Structural Basis and Functional Consequences of Interactions Between Tetrodotoxin and Voltage-Gated Sodium Channels. <em>Mar Drugs</em> 2006 Apr; 4(3): 143–156. Published online 2006 Apr 6. Retrieved November 25, 2020 from https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3663409/</a></li>
 						<li>Greene, M. (2020). <i>Lectures 8 &amp; 9 Graded and Action Potentials</i>, lecture notes, BIOL3225 Human Physiology BIOL3225, University of Colorado Denver, delivered 09 Sep 2020 &amp; 16 Sep 2020</li>
 						<li><a href="http://www.nernstgoldman.physiology.arizona.edu/" target="blank">The Nernst/Goldman Equation Simulator. (n.d.). Retrieved October 22, 2020, from http://www.nernstgoldman.physiology.arizona.edu/</a></li>
 						<li>Widmaier, E. P., Vander, A. J., Raff, H., &amp; Strang, K. T. (2019). 6.7 Graded and Action Potentials. In <em>Vander's human physiology: The mechanisms of body function</em> (p. 149-158). New York, NY: McGraw-Hill Education.</li>
@@ -353,6 +371,14 @@ class ActionPotentialPage extends React.Component {
 						<Row>
 							<Col>
 								<img alt="Graph of action potential with meaningful events labeled" src={Helpers.buildPublicUrl("actionpotential.svg")}></img>
+							</Col>
+						</Row>
+						<Row>
+							<Col>					
+								<p>
+									The form and graph on this page can be used to visualize how an action potential changes the membrane potential of a cell. Click
+									"Fire an action potential!" to propagate an action potential through an infinitesimally small section of a standard human neuron.
+								</p>
 							</Col>
 						</Row>
 						<Row>

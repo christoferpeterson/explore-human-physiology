@@ -7,6 +7,7 @@ import Chart from "../Chart";
 import { StopFill, PlayFill, ArrowCounterclockwise } from 'react-bootstrap-icons';
 import MathJax from "react-mathjax";
 import RangeInput from '../Shared/RangeInput';
+import { Link } from "react-router-dom";
 
 const Constants = {CUSTOM_INDEX:-1, HISTORY_INTERVAL:200, HISTORY_LENGTH:60};
 
@@ -160,11 +161,27 @@ class RestingMembranePotentialPage extends React.Component {
 				<dt>[ion]<sub>o</sub></dt><dd>The concentration of the ion outside of the plasma membrane measured in milliMolar (mM).</dd>
 				<dt>[ion]<sub>i</sub></dt><dd>The concentration of the ion inside of the plasma membrane measured in milliMolar (mM).</dd>
 			</dl>
+			<h2>The Bigger Picture</h2>
 			<p>
-				The form and graph on this page can be used to visualize how resting membrane potential changes. Adjust the
-				values for the Goldman equation variables and see how the resting membrane potential changes on the graph. Press stop to freeze the graph
-				in place, press play to begin recording data, again, and press reset to clear out the old data.
+				Excitable cells in the body stay at a resting membrane potential as a way to store potential energy and prepare to do work. A neuron, 
+				which has	a resting membrane potential of approximately -70 mV, can use that voltage to perform work. The work performed by a neuron is the 
+				transmission of a signal down its axon. Resting membrane potential is how the nervous system prepares for the transfer of signals
+				across the entire body. <Link to="action-potential">Learn how the nervous system transfers the signals by learning about action potentials.</Link>
 			</p>
+			<h2>Pharmacology</h2>
+			<p>
+				Digitalis is a medicine typically prescribed to patients sufferin from congestive heart failure or heart arrythmia (abnormal heart beat).
+				It acts by inhibiting the sodium/potassium antiporter in exctiable cells. Inhibition of the cell's primary mode of maintaining sodium
+				and potassium concentration gradients leads to membrane depolarization. Try setting the sodium and potassium concentrations equal to eachother.
+				Notice the resting membrane potential depolarizes to a resting membrane potential closer to zero. In small enough doses, this can make
+				it easier for excitable cells to reach threshold potential and cause an action potential.
+			</p>
+			<h3>Take it Further</h3>
+			<ul>
+				<li>What would happen if the dose of digitalis is too high?</li>
+				<li>Imagine a drug that blocks potassium leak channels. What would that do to the resting membrane potential?</li>
+				<li>How about a drug that blocks sodium leak channels?</li>
+			</ul>
 		</div>)
 	}
 
@@ -174,6 +191,7 @@ class RestingMembranePotentialPage extends React.Component {
 				<hr />
 				<small>
 					<ol style={{paddingLeft:"1em", maxWidth:"60em"}}>
+						<li><a href="https://www.cvpharmacology.com/cardiostimulatory/digitalis" target="_blank">Klabunde, R. E. (2015, March 09). Cardiac Glycosides (Digitalis Compounds). Retrieved November 25, 2020, from https://www.cvpharmacology.com/cardiostimulatory/digitalis</a></li>
 						<li>Greene, M. (2020). <i>Lectures 5 &amp; 6 Resting Membrane Potential</i>, lecture notes, BIOL3225 Human Physiology BIOL3225, University of Colorado Denver, delivered 31 Aug 2020 &amp; 02 Sep 2020</li>
 						<li><a href="http://www.nernstgoldman.physiology.arizona.edu/" target="blank">The Nernst/Goldman Equation Simulator. (n.d.). Retrieved October 22, 2020, from http://www.nernstgoldman.physiology.arizona.edu/</a></li>
 						<li>Widmaier, E. P., Vander, A. J., Raff, H., &amp; Strang, K. T. (2019). 6.6 The Resting Membrane Potential. In <em>Vander's human physiology: The mechanisms of body function</em> (p. 144-148). New York, NY: McGraw-Hill Education.</li>
@@ -233,6 +251,15 @@ class RestingMembranePotentialPage extends React.Component {
 				<Row>
 					<Col xs={12} sm={12} md={6}>{this.renderDescription()}</Col>
 					<Col xs={12} sm={12} md={6}>
+						<Row>
+							<Col>
+								<p>
+									The form and graph on this page can be used to visualize how resting membrane potential changes. Adjust the
+									values for the Goldman equation variables and see how the resting membrane potential changes on the graph. Press stop to freeze the graph
+									in place, press play to begin recording data, again, and press reset to clear out the old data.
+								</p>
+							</Col>
+						</Row>
 						<Row>
 							<Col>{this.renderForm()}</Col>
 						</Row>

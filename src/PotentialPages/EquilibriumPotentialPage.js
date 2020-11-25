@@ -7,6 +7,7 @@ import Chart from "../Chart";
 import { StopFill, PlayFill, ArrowCounterclockwise } from 'react-bootstrap-icons';
 import MathJax from "react-mathjax";
 import RangeInput from '../Shared/RangeInput';
+import { Link } from "react-router-dom";
 
 const CUSTOM_INDEX=-1, HISTORY_INTERVAL=200, HISTORY_LENGTH=60;
 
@@ -164,11 +165,34 @@ class EquilibriumPotentialPage extends React.Component {
 				<dt>[ion]<sub>o</sub></dt><dd>The concentration of the ion outside of the plasma membrane measured in milliMolar (mM).</dd>
 				<dt>[ion]<sub>i</sub></dt><dd>The concentration of the ion inside of the plasma membrane measured in milliMolar (mM).</dd>
 			</dl>
+			<h2>The Bigger Picture</h2>
 			<p>
-				The form and graph on this page can be used to visualize how equilibrium potential changes in a dynamic system. Adjust the
-				values for the Nernst equation variables and see how the equilibrium potential changes on the graph. Press stop to freeze the graph
-				in place, press play to begin recording data, again, and press reset to clear out the old data.
+				Cells around the body utilize the equilibrium potential phenomenon to perform work. That work typically comes in the form of information
+				transfer. As voltages change in one part of the cell ions can move into and out of the cell. By controlling the flux of the ions through
+				managing permeability and the electrochemical gradients, a cell can perform work or use those ions to trigger other processes. Equilibrium
+				potential, in this way, acts as the fundamental building block for the actions performed by excitable cells in the body. A neuron, for 
+				example, precisely controls the equilibrium potential across the membrane of its axon to propagte signals. <Link to="action-potential">
+					Learn how cells maintain an equilibrium potential by setting a resting membrane potential.</Link>
 			</p>
+			<h2>Disease State</h2>
+			<p>
+				Because equilibrium potential is a fundamental physical underpinning for physiology, when disease states occur in the body that
+				affect it, the health consequences can be widespread and catastrophic. A relatively common clinical complication is hypokalemia.
+				<em> Hypo-</em> meaning low, <em>kal-</em> referring to kalium, the latin word for potassium, and <em>-emia</em> meaning presence
+				in blood, hypokalemia means low potassium levels in the blood. A low potassium concentration can cause hyperpolarization of
+				excitable cells. Try reducing the [K<sup>+</sup>]<sub>o</sub> value in the chart. The equilibrium potential will drop. This means
+				that the threshold to trigger depolarization for excitability for cells will be more difficult to reach. On the flip side, hyperkalemia,
+				or high potassium presence in blood will have the opposite effect. The cells will depolarize. This can cause depolarization to happen
+				too easily.
+			</p>
+			<h3>Take it Further</h3>
+			<ul>
+				<li>How would hypernatremia (high sodium presence in blood) and hyponatremia affect excitable cells?</li>
+				<li>How would hyperchloremia (high chloride presence in blood) and hypochloremia affect excitable cells?</li>
+				<li>Why does temperature affect the equilibrium potential?</li>
+				<li>What happens during hypothermia (low heat presence in blood) and hyperthermia?</li>
+				<li>What mechanisms can a cell use to manage the permeability of ions?</li>
+			</ul>
 		</div>)
 	}
 
@@ -222,6 +246,7 @@ class EquilibriumPotentialPage extends React.Component {
 					<ol style={{paddingLeft:"1em", maxWidth:"60em"}}>
 						<li>Greene, M. (2020). <i>Lectures 4 Feedback Membrane Potential</i>, lecture notes, BIOL3225 Human Physiology BIOL3225, University of Colorado Denver, delivered 26 Aug 2020</li>
 						<li><a href="http://www.nernstgoldman.physiology.arizona.edu/" target="blank">The Nernst/Goldman Equation Simulator. (n.d.). Retrieved October 22, 2020, from http://www.nernstgoldman.physiology.arizona.edu/</a></li>
+						<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5399982/" target="_blank">Weiss, J.N., Qu, Z., Shivkumar K. (2017). The Electrophysiology of Hypo- and Hyperkalemia. <em>Circ Arrhythm Electrophysiol Mar 2017</em>. 10(3): e004667. doi: 10.1161/CIRCEP.116.004667</a></li>
 						<li>Widmaier, E. P., Vander, A. J., Raff, H., &amp; Strang, K. T. (2019). 6.6 The Resting Membrane Potential. In <em>Vander's human physiology: The mechanisms of body function</em> (p. 145). New York, NY: McGraw-Hill Education.</li>
 						<li><a href="https://journals.physiology.org/doi/full/10.1152/advan.00029.2004" target="blank">Wright, S. H. (2004). Generation of resting membrane potential. <em>Advances in Physiology Education</em>, 28(4), 139-142. doi:10.1152/advan.00029.2004</a></li>
 					</ol>
@@ -239,6 +264,15 @@ class EquilibriumPotentialPage extends React.Component {
 				<Row>
 					<Col xs={12} sm={12} md={6}>{this.renderDescription()}</Col>
 					<Col xs={12} sm={12} md={6}>
+						<Row>
+							<Col>
+								<p>
+									The form and graph on this page can be used to visualize how equilibrium potential changes in a dynamic system. Adjust the
+									values for the Nernst equation variables and see how the equilibrium potential changes on the graph. Press stop to freeze the graph
+									in place, press play to begin recording data, again, and press reset to clear out the old data.
+								</p>
+							</Col>
+						</Row>
 						<Row>
 							<Col>{this.renderForm()}</Col>
 						</Row>
