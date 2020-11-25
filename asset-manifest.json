@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/explore-human-physiology/static/js/main.eb74aee8.chunk.js",
-    "main.js.map": "/explore-human-physiology/static/js/main.eb74aee8.chunk.js.map",
+    "main.js": "/explore-human-physiology/static/js/main.4a680d70.chunk.js",
+    "main.js.map": "/explore-human-physiology/static/js/main.4a680d70.chunk.js.map",
     "runtime-main.js": "/explore-human-physiology/static/js/runtime-main.f02642ce.js",
     "runtime-main.js.map": "/explore-human-physiology/static/js/runtime-main.f02642ce.js.map",
     "static/css/2.5c86dc43.chunk.css": "/explore-human-physiology/static/css/2.5c86dc43.chunk.css",
-    "static/js/2.3c84c9ac.chunk.js": "/explore-human-physiology/static/js/2.3c84c9ac.chunk.js",
-    "static/js/2.3c84c9ac.chunk.js.map": "/explore-human-physiology/static/js/2.3c84c9ac.chunk.js.map",
+    "static/js/2.8f3f01c2.chunk.js": "/explore-human-physiology/static/js/2.8f3f01c2.chunk.js",
+    "static/js/2.8f3f01c2.chunk.js.map": "/explore-human-physiology/static/js/2.8f3f01c2.chunk.js.map",
     "index.html": "/explore-human-physiology/index.html",
     "static/css/2.5c86dc43.chunk.css.map": "/explore-human-physiology/static/css/2.5c86dc43.chunk.css.map",
-    "static/js/2.3c84c9ac.chunk.js.LICENSE.txt": "/explore-human-physiology/static/js/2.3c84c9ac.chunk.js.LICENSE.txt"
+    "static/js/2.8f3f01c2.chunk.js.LICENSE.txt": "/explore-human-physiology/static/js/2.8f3f01c2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.f02642ce.js",
     "static/css/2.5c86dc43.chunk.css",
-    "static/js/2.3c84c9ac.chunk.js",
-    "static/js/main.eb74aee8.chunk.js"
+    "static/js/2.8f3f01c2.chunk.js",
+    "static/js/main.4a680d70.chunk.js"
   ]
 }
