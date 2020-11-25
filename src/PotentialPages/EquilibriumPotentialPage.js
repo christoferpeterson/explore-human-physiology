@@ -246,7 +246,7 @@ class EquilibriumPotentialPage extends React.Component {
 					<ol style={{paddingLeft:"1em", maxWidth:"60em"}}>
 						<li>Greene, M. (2020). <i>Lectures 4 Feedback Membrane Potential</i>, lecture notes, BIOL3225 Human Physiology BIOL3225, University of Colorado Denver, delivered 26 Aug 2020</li>
 						<li><a href="http://www.nernstgoldman.physiology.arizona.edu/" target="blank">The Nernst/Goldman Equation Simulator. (n.d.). Retrieved October 22, 2020, from http://www.nernstgoldman.physiology.arizona.edu/</a></li>
-						<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5399982/" target="_blank">Weiss, J.N., Qu, Z., Shivkumar K. (2017). The Electrophysiology of Hypo- and Hyperkalemia. <em>Circ Arrhythm Electrophysiol Mar 2017</em>. 10(3): e004667. doi: 10.1161/CIRCEP.116.004667</a></li>
+						<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5399982/" target="_blank"  rel="noreferrer">Weiss, J.N., Qu, Z., Shivkumar K. (2017). The Electrophysiology of Hypo- and Hyperkalemia. <em>Circ Arrhythm Electrophysiol Mar 2017</em>. 10(3): e004667. doi: 10.1161/CIRCEP.116.004667</a></li>
 						<li>Widmaier, E. P., Vander, A. J., Raff, H., &amp; Strang, K. T. (2019). 6.6 The Resting Membrane Potential. In <em>Vander's human physiology: The mechanisms of body function</em> (p. 145). New York, NY: McGraw-Hill Education.</li>
 						<li><a href="https://journals.physiology.org/doi/full/10.1152/advan.00029.2004" target="blank">Wright, S. H. (2004). Generation of resting membrane potential. <em>Advances in Physiology Education</em>, 28(4), 139-142. doi:10.1152/advan.00029.2004</a></li>
 					</ol>

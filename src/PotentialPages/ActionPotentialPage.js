@@ -346,7 +346,7 @@ class ActionPotentialPage extends React.Component {
 				<hr />
 				<small>
 					<ol style={{paddingLeft:"1em", maxWidth:"60em"}}>
-						<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3663409/" target="_blank">Geffeney, S. L., Ruben, P. C. (2006). The Structural Basis and Functional Consequences of Interactions Between Tetrodotoxin and Voltage-Gated Sodium Channels. <em>Mar Drugs</em> 2006 Apr; 4(3): 143–156. Published online 2006 Apr 6. Retrieved November 25, 2020 from https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3663409/</a></li>
+						<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3663409/" target="_blank"  rel="noreferrer">Geffeney, S. L., Ruben, P. C. (2006). The Structural Basis and Functional Consequences of Interactions Between Tetrodotoxin and Voltage-Gated Sodium Channels. <em>Mar Drugs</em> 2006 Apr; 4(3): 143–156. Published online 2006 Apr 6. Retrieved November 25, 2020 from https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3663409/</a></li>
 						<li>Greene, M. (2020). <i>Lectures 8 &amp; 9 Graded and Action Potentials</i>, lecture notes, BIOL3225 Human Physiology BIOL3225, University of Colorado Denver, delivered 09 Sep 2020 &amp; 16 Sep 2020</li>
 						<li><a href="http://www.nernstgoldman.physiology.arizona.edu/" target="blank">The Nernst/Goldman Equation Simulator. (n.d.). Retrieved October 22, 2020, from http://www.nernstgoldman.physiology.arizona.edu/</a></li>
 						<li>Widmaier, E. P., Vander, A. J., Raff, H., &amp; Strang, K. T. (2019). 6.7 Graded and Action Potentials. In <em>Vander's human physiology: The mechanisms of body function</em> (p. 149-158). New York, NY: McGraw-Hill Education.</li>

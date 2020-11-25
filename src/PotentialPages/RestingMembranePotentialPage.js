@@ -191,7 +191,7 @@ class RestingMembranePotentialPage extends React.Component {
 				<hr />
 				<small>
 					<ol style={{paddingLeft:"1em", maxWidth:"60em"}}>
-						<li><a href="https://www.cvpharmacology.com/cardiostimulatory/digitalis" target="_blank">Klabunde, R. E. (2015, March 09). Cardiac Glycosides (Digitalis Compounds). Retrieved November 25, 2020, from https://www.cvpharmacology.com/cardiostimulatory/digitalis</a></li>
+						<li><a href="https://www.cvpharmacology.com/cardiostimulatory/digitalis" target="_blank"  rel="noreferrer">Klabunde, R. E. (2015, March 09). Cardiac Glycosides (Digitalis Compounds). Retrieved November 25, 2020, from https://www.cvpharmacology.com/cardiostimulatory/digitalis</a></li>
 						<li>Greene, M. (2020). <i>Lectures 5 &amp; 6 Resting Membrane Potential</i>, lecture notes, BIOL3225 Human Physiology BIOL3225, University of Colorado Denver, delivered 31 Aug 2020 &amp; 02 Sep 2020</li>
 						<li><a href="http://www.nernstgoldman.physiology.arizona.edu/" target="blank">The Nernst/Goldman Equation Simulator. (n.d.). Retrieved October 22, 2020, from http://www.nernstgoldman.physiology.arizona.edu/</a></li>
 						<li>Widmaier, E. P., Vander, A. J., Raff, H., &amp; Strang, K. T. (2019). 6.6 The Resting Membrane Potential. In <em>Vander's human physiology: The mechanisms of body function</em> (p. 144-148). New York, NY: McGraw-Hill Education.</li>

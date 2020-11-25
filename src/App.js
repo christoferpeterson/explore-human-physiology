@@ -32,7 +32,7 @@ function App() {
 								<NavDropdown.Item><Link to="sarcomere">Sarcomere</Link></NavDropdown.Item>
 							</NavDropdown>
 						</Nav>
-						<NavLink style={{paddingLeft:0}} className="ml-auto" href="https://github.com/christoferpeterson/explore-human-physiology" target="_blank"><CodeSquare /> Contribute</NavLink>
+						<NavLink style={{paddingLeft:0}} className="ml-auto" href="https://github.com/christoferpeterson/explore-human-physiology" target="_blank"  rel="noreferrer"><CodeSquare /> Contribute</NavLink>
 						{/* <Form inline>
 							<FormControl type="text" placeholder="Search" className="mr-sm-2" />
 							<Button variant="outline-success">Search</Button>
