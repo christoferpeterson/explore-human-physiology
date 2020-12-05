@@ -310,7 +310,7 @@ class ActionPotentialPage extends React.Component {
 			<p>
 				Tetrodotoxin is a potent neurotoxin produced by animals such as rough-skinned newts, pufferfish, and blue-ringed octopuses.
 				It acts by blocking voltage-gated sodium channels. Without the ability for the membrane permeability of sodium of axons
-				to increase upon reachin threshold, an action potential can never fire. This prevents the propagation of signals along
+				to increase upon reaching threshold, an action potential can never fire. This prevents the propagation of signals along
 				axons. In small doses on non-vital neurons, a tingling sensation and loss of motor control occurs. In large doses or when applied
 				to vital neurons such as those in the autonomic nervous system, the toxin can disrupt vital physiological processes leading to
 				death. No amount of graded potentials will cause an action potentials if depolarization by voltage-gated sodium channels cannot
