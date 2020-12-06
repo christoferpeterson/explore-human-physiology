@@ -138,23 +138,22 @@ class EquilibriumPotentialPage extends React.Component {
 		return (<div>
 			<h1>Equilibrium Potential</h1>
 			<p>
-				Diffusion is the natural tendency for particles in a solution to evenly distribute among the solvent. The particles, through
-				their intrinsic movement, will flow from areas of high concentration to areas of low concentration following the third law
-				of thermodynamics. The entropy of the system will increase as the particles spread out. This causes a net flux of particles down
-				the solute concentration gradient.
+				Diffusion is the natural tendency for particles in a solution to distribute among the solvent evenly. Through their intrinsic movement, 
+				the particles will flow from areas of high concentration to areas of low concentration following the third law of thermodynamics. The 
+				system's entropy will increase as the particles spread out, causing a net flux of particles down the solute concentration gradient.
 			</p>
 			<p>
-				In vivo, the solutes are a combination of many ions and solutions are be separated by plasma membrane. Each ion will attempt to 
-				spread out according to their particular concentration gradients. Ions are charged and like charges repel eachother. An additional 
-				electrostatic force limits the net flux of ions. The direction of the electrical force, when considering a single ion, can support 
-				or oppose diffusion. When the flux due to the electrical repulsion is equal and opposite to flux due to diffusion, the net flux of 
-				ions will be zero. This equilibrium point can be measured as the electric potential. When the potential is measured on either side
-				of a plasma membrane, it is called the equilibrium potential. It is measured in millivolts.
+				In vivo, the solutes combine many ions, and a plasma membrane is separating solutions. Each ion will attempt to spread out according 
+				to their particular concentration gradients. Ions are charged and like charges repel each other. An additional electrostatic force 
+				limits the net flux of ions. The direction of the electrical force, when considering a single ion, can support or oppose diffusion. 
+				When the flux due to the electrical repulsion is equal and opposite to flux due to diffusion, ions' net flux will be zero. Electric 
+				potential, expressed in millivolts, quantifies the equilibrium point. When measured on either side of a plasma membrane, it is called 
+				the equilibrium potential.
 			</p>
 			<h2>Nernst Equation</h2>
 			<p>
 				Walther Nernst, a German physical chemist, described equilibrium potential as the mathematical relationship between the charges of
-				the ions, and the ratio of concentrations on either side of a membrane. The equation can be written as:
+				the ions, and the ratio of concentrations on either side of a membrane. The equation is:
 			</p>
 			<p className="text-center"><MathJax.Provider><MathJax.Node inline formula={nernstLatex} /></MathJax.Provider></p>
 			<dl>
@@ -167,22 +166,23 @@ class EquilibriumPotentialPage extends React.Component {
 			</dl>
 			<h2>The Bigger Picture</h2>
 			<p>
-				Cells around the body utilize the equilibrium potential phenomenon to perform work. That work typically comes in the form of information
-				transfer. As voltages change in one part of the cell ions can move into and out of the cell. By controlling the flux of the ions through
-				managing permeability and the electrochemical gradients, a cell can perform work or use those ions to trigger other processes. Equilibrium
-				potential, in this way, acts as the fundamental building block for the actions performed by excitable cells in the body. A neuron, for 
-				example, precisely controls the equilibrium potential across the membrane of its axon to propagte signals. <Link to="action-potential">
-					Learn how cells maintain an equilibrium potential by setting a resting membrane potential.</Link>
+				Cells around the body utilize the equilibrium potential phenomenon to perform work. That work typically comes in the form of 
+				information transfer. As voltages change in one part of the cell, ions can move into and out of the cell. By controlling the 
+				ions' flux through managing permeability and the electrochemical gradients, a cell can perform work or use those ions to trigger 
+				other processes. In this way, equilibrium potential acts as the fundamental building block for the actions performed by 
+				excitable cells in the body. For example, a neuron controls the equilibrium potential across the membrane of its axon to propagate
+				signals. 
+				<Link to="action-potential">Learn how cells maintain an equilibrium potential by setting a resting membrane potential.</Link>
 			</p>
 			<h2>Disease State</h2>
 			<p>
-				Because equilibrium potential is a fundamental physical underpinning for physiology, when disease states occur in the body that
-				affect it, the health consequences can be widespread and catastrophic. A relatively common clinical complication is hypokalemia.
+				Because equilibrium potential is a fundamental physical underpinning for physiology, when disease states occur in the body that affects 
+				it, the health consequences can be widespread and catastrophic. A relatively common clinical complication is hypokalemia.
 				<em> Hypo-</em> meaning low, <em>kal-</em> referring to kalium, the latin word for potassium, and <em>-emia</em> meaning presence
 				in blood, hypokalemia means low potassium levels in the blood. A low potassium concentration can cause hyperpolarization of
-				excitable cells. Try reducing the [K<sup>+</sup>]<sub>o</sub> value in the chart. The equilibrium potential will drop. This means
-				that the threshold to trigger depolarization for excitability for cells will be more difficult to reach. On the flip side, hyperkalemia,
-				or high potassium presence in blood will have the opposite effect. The cells will depolarize. This can cause depolarization to happen
+				excitable cells. Try reducing the [K<sup>+</sup>]<sub>o</sub> value in the chart. The equilibrium potential will drop, meaning 
+				the threshold to trigger depolarization for excitability for cells will be more challenging to reach. On the flip side, hyperkalemia, 
+				or high potassium presence in blood will have the opposite effect. The cells will depolarize, causing depolarization to happen 
 				too easily.
 			</p>
 			<h3>Take it Further</h3>

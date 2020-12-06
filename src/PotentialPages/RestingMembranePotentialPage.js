@@ -131,22 +131,26 @@ class RestingMembranePotentialPage extends React.Component {
 		const nernstLatex = "E_{m}=-\\frac{RT}{F}\\ln \\frac{P_{K^{+}}[K^{+}]_{i}+P_{Na^{+}}[Na^{+}]_{i}+P_{Cl^{-}}[Cl^{-}]_{o}}{P_{K^{+}}[K^{+}]_{o}+P_{Na^{+}}[Na^{+}]_{o}+P_{Cl^{-}}[Cl^{-}]_{i}}";
 		return (<div>
 			<h1>Resting Membrane Potential</h1>
-			<p>The semi-permeability of a cell membrane allows for the division of fluid and solutes between two distinct 
-				compartments. An electrochemical dynamic equilibrium exists between the cytosol (cell interior) and the extracellular 
-				fluid. Solute concentration and electric charge differences across the cell membrane quantify the dynamic equilibrium. 
-				Diffusion creates a force driving the solutes from high concentration to low concentration. The separation of charged 
-				particles creates an electric potential, measured in millivolts (mV), which applies a force to bring the charge to zero. 
-				The electric force achieves an equilibrium potential, also measured in mV, when its force is equal and opposite to 
-				the force created by the chemical gradient.</p>
-			<p>Resting membrane potential is a measure of the cell’s electric potential at rest (no applied stimulus). In the human 
-				body, most cells, particularly neurons, have a resting membrane potential of -70 mV. Relative and selective permeability 
-				of the major in vivo ions, sodium (Na<sup>+</sup>), and potassium (K<sup>+</sup>), establishes the resting membrane potential. At rest, there 
-				are more Na<sup>+</sup> ions outside of the cell than inside. There are more K<sup>+</sup> ions inside the cell than outside. Primary active 
-				transport, using adenosine triphosphate (ATP) as a source of power, managed by the Na<sup>+</sup>/K<sup>+</sup> ATPase embedded in the membrane, 
-				helps maintain this concentration gradient by moving K+ into the cell and Na+ out of the cell. Selective passive transport 
-				channels in the membrane allow the free flow of Na+ and K+, known as leak channels. Cells have a much higher number of K<sup>+</sup> 
+			<p>
+				The semi-permeability of a cell membrane allows for the division of fluid and solutes between two distinct 
+				compartments. An electrochemical dynamic equilibrium exists between the cytosol (cell interior) and the 
+				extracellular fluid. The dynamic equilibrium, quantified by solute concentration and electric charge differences 
+				across the cell membrane, causes the driving force of diffusion. The force drives particles from areas of high 
+				concentration to low concentration. The separation of charged particles creates an electric potential, measured 
+				in millivolts (mV), which applies a force to bring the charge to zero. The electric force achieves an equilibrium 
+				potential, measured in mV when its force is equal and opposite to the force created by the chemical gradient.
+			</p>
+			<p>
+				Resting membrane potential is a measure of the cell's electric potential at rest (no applied stimulus). Most cells, particularly neurons, 
+				have a resting membrane potential of -70 mV in the human body. Relative and selective permeability of the major in vivo ions, sodium 
+				(Na<sup>+</sup>) and potassium (K<sup>+</sup>), establishes the resting membrane potential. At rest, there are more Na<sup>+</sup> 
+				ions outside of the cell than inside. There are more K<sup>+</sup> ions inside the cell than outside. Primary active transport,
+				using adenosine triphosphate (ATP) as a source of power, managed by the Na<sup>+</sup>/K<sup>+</sup> ATPase embedded in the membrane,
+				helps maintain this concentration gradient by moving K+ into the cell and Na+ out of the cell. Selective passive transport channels in 
+				the membrane allow Na<sup>+</sup> and K<sup>+</sup>'s free flow, known as leak channels. Cells have a much higher number of K<sup>+</sup> 
 				leak channels than Na<sup>+</sup>. A negative charge inside the cell is achieved by the high net flux of positive ions out of the cell. 
-				The measure of that charge is the resting membrane potential, and for most cells, it is -70 mV.</p>
+				The measure of that charge is the resting membrane potential, and for most cells, it is -70 mV.
+			</p>
 			<h2>Goldman Equation</h2>
 			<p>The Goldman equation calculates the resting membrane potential of a cell. There are several necessary aspects of the 
 				equation. First, concentrations of vital ions Na<sup>+</sup>, K<sup>+</sup>, and chlorine (Cl<sup>-</sup>) both inside and outside of the cell establishes 
@@ -170,11 +174,12 @@ class RestingMembranePotentialPage extends React.Component {
 			</p>
 			<h2>Pharmacology</h2>
 			<p>
-				Digitalis is a medicine typically prescribed to patients sufferin from congestive heart failure or heart arrythmia (abnormal heart beat).
-				It acts by inhibiting the sodium/potassium antiporter in exctiable cells. Inhibition of the cell's primary mode of maintaining sodium
-				and potassium concentration gradients leads to membrane depolarization. Try setting the sodium and potassium concentrations equal to eachother.
-				Notice the resting membrane potential depolarizes to a resting membrane potential closer to zero. In small enough doses, this can make
-				it easier for excitable cells to reach threshold potential and cause an action potential.
+				Physicians prescribe digitalis to patients suffering from congestive heart failure or heart arrhythmias (abnormal heartbeat). It 
+				acts by inhibiting the sodium/potassium antiporter in excitable cells. Inhibition of the cell's primary mode of maintaining 
+				sodium and potassium concentration gradients leads to membrane depolarization. Try setting the sodium and potassium concentrations 
+				equal to each other. Notice the resting membrane potential depolarizes to a resting membrane potential closer to zero. Lowering the 
+				resting membrane potential makes it easier for excitable cells to reach threshold potential and cause an action potential in small 
+				doses.
 			</p>
 			<h3>Take it Further</h3>
 			<ul>
