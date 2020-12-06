@@ -62,12 +62,12 @@ class SarcomerePage extends React.Component {
 				</p>
 				<h2>Anatomy</h2>
 				<p>
-					Z-disks, relatively thick bundles of proteins, flank the sarcomere and provider anchorage to the rest of the structure.
-					The outer border is composed of a series of thin filaments. A thin filament is composed of a chain of
-					actin proteins wrapped in tropomyosin. It also contains the regulatory protein troponin which is used
-					to coordinate and control muscle contraction. Surrounded by the thin filaments is a thick filament. The thick filament
-					is a bundle of myosin proteins. Myosin is a long protein with a bulbous head. The thick filament is anchored to the
-					z-disk by titin, a springy protein which contributes to muscle elasticity.
+					Z-disks, relatively thick bundles of proteins, flank the sarcomere and provider anchorage to the rest of the 
+					structure. The outer border is composed of a series of thin filaments. A thin filament is composed of a chain 
+					of actin proteins wrapped in tropomyosin. It also contains the regulatory protein troponin, which coordinates 
+					and controls muscle contraction. The thin filaments surround a thick filament, a bundle of myosin proteins. 
+					Myosin is a long protein with a bulbous head. The thick filament is anchored to the z-disk by titin, a springy 
+					protein contributing to muscle's elasticity.
 				</p>
 				<p>
 					There are several zones in the sarcomere that make it easier to explain how sarcomere contraction occurs. The Z-disk
@@ -78,41 +78,59 @@ class SarcomerePage extends React.Component {
 				<h2>Contraction</h2>
 				<p>
 					Calcium released by the myofibril sarcoplasmic reticulum increases the concentration of calcium in the cytosol. As the 
-					concentration increases, the likelihood of calcium binding to troponin, the regulatory protein, increases. Once calcium
-					binds to troponin, a conformation change occurs in troponin and tropomyosin, exposing the myosin-actin binding site.
-					Adenosine triphosphate (ATP) bound to myosin heads undergoes phosphorylation which changes the conformation of the myosin 
-					putting it into a high-energy state. The high-energy myosin heads spontaneously bind to the exposed binding site. The myosin 
-					head releases Adenosine diphosphate (ADP) and the phosphoric acid (P<sub>i</sub>) causing a conformation back to its low energy 
-					state. Because the myosin is bound to actin, the myosin head pulls the thin filament toward the M-line, also known as the power
-					stroke. ATP binds to myosin again, releasing the actin-myosin bond. The natural elasticity of the sarcomere proteins as well
-					as action of antagonist muscles return the sarcomere to its original state.
+					concentration increases, the likelihood of calcium binding to troponin, the regulatory protein, increases. Once calcium 
+					binds to troponin, a conformation change occurs in troponin and tropomyosin, exposing the myosin-actin binding site. 
+					Adenosine triphosphate (ATP) bound to myosin heads undergoes phosphorylation, which changes the myosin's conformation 
+					into a high-energy state. The high-energy myosin heads spontaneously bind to the exposed binding site. The myosin head 
+					releases Adenosine diphosphate (ADP) and the phosphoric acid (P<sub>i</sub>), causing a conformation back to its low 
+					energy state. Because the myosin is bound to actin, the myosin head pulls the thin filament toward the M-line, also 
+					known as the power stroke. ATP binds to myosin again, releasing the actin-myosin bond. The natural elasticity of the 
+					sarcomere proteins and antagonist muscles' action return the sarcomere to its original state.
 				</p>
 				<h2>The Bigger Picture</h2>
 				<p>
-					The sarcomere is the functional unit of all muscle cells in the body. While skeletal muscles are the most common type 
-					of muscle, sarcomeres are also present in smooth and cardiac muscle tissue. Sarcomere arrangement, in relation to each other,
-					allows smooth muscle fibers to constrict tubes. Waves of contraction in the smooth muscle surrounding a tube is how the body
-					moves substances through the tubes -- a phenomena known as peristalsis. The coordinated contraction of muscles cells in the heart
-					create a synchronized squeeze that circulates blood throughout the body.
+					The sarcomere is the functional unit of all muscle cells in the body. While skeletal muscles are the most common muscle 
+					type, sarcomeres are also present in smooth and cardiac muscle tissue. Sarcomere arrangement, relative to each other, 
+					allows smooth muscle fibers to constrict tubes. Waves of contraction in the smooth muscle surrounding a hollow organ are 
+					how the body moves substances through the organ, a phenomenon known as peristalsis. The coordinated contraction of muscle 
+					cells in the heart creates a synchronized squeeze that circulates blood throughout the body.
 				</p>
 				<h2>Post Mortem</h2>
-				<p>When a muscle cell dies it no longer produces the necessary ATP required to detach the myosin from the action. In conjunction with
-					the release of calcium from the dead or dying sarcoplasmic retriculum, the sarocmere will spontaneously contract. Eventually, the
-					amount of ATP within the cell will be used up and the contracting sarcomere cannot relax. When a muscle cell is contracted but does
-					not have ATP to detach the myosin, it is in a state of rigor mortis. A person suffering from rigor mortis will have stiff joints
-					and they will not be able to control the muscle contraction. When a person dies, their entire body gets put into a state of rigor mortis.
-					This usually lasts one to four days, until the sarcomere's filaments begin to breakdown or cumulative number of myosin heads that
-					spontaneously release is enough to loosen the muscles.
+				<p>
+					When a muscle cell dies, it no longer produces the necessary ATP required to detach the myosin from the action. In 
+					conjunction with the release of calcium from the dead or dying sarcoplasmic reticulum, the sarcomere will spontaneously 
+					contract. Eventually, the cell will use up its available ATP, and the contracting sarcomere will lose its ability to 
+					relax. When a muscle cell is contracted but does not have ATP to detach the myosin, it is in a state of rigor mortis. 
+					A person suffering from rigor mortis will have stiff joints and will not control the muscle contraction. When a person 
+					dies, their entire body gets put into a state of rigor mortis. Rigor mortis in the deceased usually lasts one to four
+					days when the sarcomere's filaments begin to breakdown, or the cumulative number of myosin heads that spontaneously 
+					release is enough to loosen the muscles.
 				</p>
 				<h2>Take it Further</h2>
 				<ul>
-					<li>Try to think of how a smooth muscle's sarcomeres may be arranged so they can pinch off tubes on demand.</li>
+					<li>Try to think of ways to arrange smooth muscle's sarcomeres so they can pinch off tubes on demand.</li>
 					<li>Attempt to arrange sarcomeres in ways where their coordinated contraction may perform different mechanical functions.</li>
 					<li>Why do skeletal muscles need antagonists? For example, why do we have biceps on the anterior side of the arm and triceps on the posterior?</li>
-					<li>You are tasked with making a muscle relaxant drug. What physiological components of the sarcomere can you target to prevent a muscle from contracting?</li>
+					<li>Consider a muscle-relaxing drug. What physiological components of the sarcomere could it target to prevent a muscle from contracting?</li>
 				</ul>
 			</div>
 		);
+	}
+
+	renderReferences = () => {
+		return (
+			<div>
+				<hr />
+				<small>
+					<ol style={{paddingLeft:"1em", maxWidth:"60em"}}>
+						<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1393748/pdf/jphysiol01486-0070.pdf" target="_blank"  rel="noreferrer">Bate-Smith, E. C., &amp; Bendall, J. R. (1947). Rigor mortis and adenosine-triphosphate. <em>The Journal of Physiology</em>, 106(2), 177-185. doi:10.1113/jphysiol.1947.sp004202</a></li>
+						<li>Greene, M., Bertolatus, D. (2020). <i>Lectures 11, 12 &amp; 13 Skeletal Muscle</i>, lecture notes, BIOL3225 Human Physiology BIOL3225, University of Colorado Denver, delivered 28 Sep 2020, 30 Sep 2020, &amp; 05 Aug 2020</li>
+						<li><a href="https://jcs.biologists.org/content/118/11/2381.long" target="_blank"  rel="noreferrer">Herrera, A. M. (2005). `Sarcomeres' of smooth muscle: Functional characteristics and ultrastructural evidence. <em>Journal of Cell Science</em>, 118(11), 2381-2392. doi:10.1242/jcs.02368</a></li>
+						<li>Widmaier, E. P., Vander, A. J., Raff, H., &amp; Strang, K. T. (2019). 6.7 Sliding-Filament Mechanism. In <em>Vander's human physiology: The mechanisms of body function</em> (p. 267-269). New York, NY: McGraw-Hill Education.</li>
+					</ol>
+				</small>
+			</div>
+		)
 	}
 
 	render() {
@@ -155,6 +173,9 @@ class SarcomerePage extends React.Component {
 							</Col>
 						</Row>
 					</Col>
+				</Row>
+				<Row>
+					<Col>{this.renderReferences()}</Col>
 				</Row>
 			</div>
 		);
