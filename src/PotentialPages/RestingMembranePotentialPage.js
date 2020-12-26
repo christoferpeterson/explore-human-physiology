@@ -161,6 +161,7 @@ class RestingMembranePotentialPage extends React.Component {
 				<dt>E<sub>m</sub></dt><dd>The resting membrane potential measured in millivolts (mV).</dd>
 				<dt>R</dt><dd>The universal gas constant (8.31446 J K<sup>-1</sup> mol<sup>-1</sup>).</dd>
 				<dt>T</dt><dd>The temperature of the system measured in Kelvins (K).</dd>
+				<dt>F</dt><dd>Faraday's constant is the total electric charge carried by one mole of electrons. (96,485.3365 C mol<sup>-1</sup>)</dd>
 				<dt>P<sub>ion</sub></dt><dd>The permeability of the ion across the membrane in meters per second (m s<sup>-1</sup>)</dd>
 				<dt>[ion]<sub>o</sub></dt><dd>The concentration of the ion outside of the plasma membrane measured in milliMolar (mM).</dd>
 				<dt>[ion]<sub>i</sub></dt><dd>The concentration of the ion inside of the plasma membrane measured in milliMolar (mM).</dd>
