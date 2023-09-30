@@ -97,7 +97,7 @@ class SarcomerePage extends React.Component {
 				</p>
 				<h2>Post Mortem</h2>
 				<p>
-					When a muscle cell dies, it no longer produces the necessary ATP required to detach the myosin from the action. In 
+					When a muscle cell dies, it no longer produces the necessary ATP required to detach the myosin from the actin. In 
 					conjunction with the release of calcium from the dead or dying sarcoplasmic reticulum, the sarcomere will spontaneously 
 					contract. Eventually, the cell will use up its available ATP, and the contracting sarcomere will lose its ability to 
 					relax. When a muscle cell is contracted but does not have ATP to detach the myosin, it is in a state of rigor mortis. 
